@@ -17,7 +17,7 @@
     ((fn [] (aget el "offsetHeight")))
     (.add cl "notify")))
 
-(defn component-main [_state]
+(defn component-main [state]
   [:<>
    [:header
     [:h2 "Dopeloop"]
@@ -39,13 +39,19 @@
       [:button "Hello"]]
      [:div.row.right
       [:button "This"]]
-     [:table.grid
-      [:tbody
-       (for [y (range 3)]
-         [:tr {:key y}
-          [:th "One"]
-          (for [x (range 16)]
-            [:td {:key x} [:div.tapper "x"]])])]]]
+     [:ui-block [:span.title "Drums"]
+      [:table.grid
+       [:tbody
+        (doall
+          (for [y (range 3)]
+            [:tr {:key y}
+             [:th (get {0 "Bass" 1 "Snare" 2 "Hat"} y)]
+             (doall
+               (for [x (range 16)]
+                 [:td {:key x}
+                  [:button.multistate
+                   {:on-click #(swap! state update-in [:grid x y] not)
+                    :class (when (get-in @state [:grid x y]) "on")}]]))]))]]]]
     [:section.typography
      [:h2 "Typography"]
      [:details
