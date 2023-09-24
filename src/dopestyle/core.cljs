@@ -17,6 +17,22 @@
     ((fn [] (aget el "offsetHeight")))
     (.add cl "notify")))
 
+(defn component-demo-grid [state]
+  [:table.grid
+   [:tbody
+    (doall
+      (for [y (range 3)]
+        [:tr {:key y}
+         [:th (get {0 "Bass" 1 "Snare" 2 "Hat"} y)]
+         (doall
+           (for [x (range 16)]
+             [:td {:key x}
+              [:button.multistate
+               {:on-click #(swap! state update-in [:grid x y] not)
+                :class [(when (get-in @state [:grid x y]) "on")
+                        (when (= (get-in @state [:grid-highlight]) x)
+                          "highlight")]}]]))]))]])
+
 (defn component-main [state]
   [:<>
    [:header
@@ -40,18 +56,7 @@
      [:div.row.right
       [:button "This"]]
      [:ui-block [:span.title "Drums"]
-      [:table.grid
-       [:tbody
-        (doall
-          (for [y (range 3)]
-            [:tr {:key y}
-             [:th (get {0 "Bass" 1 "Snare" 2 "Hat"} y)]
-             (doall
-               (for [x (range 16)]
-                 [:td {:key x}
-                  [:button.multistate
-                   {:on-click #(swap! state update-in [:grid x y] not)
-                    :class (when (get-in @state [:grid x y]) "on")}]]))]))]]]]
+      [component-demo-grid state]]]
     [:section.typography
      [:h2 "Typography"]
      [:details

@@ -177,6 +177,8 @@ button.multistate.on {
   background-color: var(--color-2);
 }
 
+/* ui-block card thing */
+
 ui-block {
   display: flex;
   flex-direction: column;
@@ -188,6 +190,8 @@ ui-block {
 ui-block .title {
   font-weight: bold;
 }
+
+/* drum grid */
 
 table.grid {
   margin: auto;
@@ -209,6 +213,14 @@ table.grid td {
 table.grid td:nth-child(4n+1) {
   width: 52px;
   padding-right: 4px;
+}
+
+/*** device specific ***/
+
+@media (min-width: 600px)  {
+  body {
+    font-size: 0.9em;
+  }
 }
 
 /*** loading spinner ***/
