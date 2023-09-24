@@ -1,9 +1,10 @@
 (ns dopestyle.core
   (:require
     [reagent.core :as r]
-    [reagent.dom :as rdom]))
+    [reagent.dom :as rdom]
+    ["nexusui" :as nx]))
 
-(defonce state (r/atom {}))
+(defonce state (r/atom {:grid-highlight 2}))
 
 (defn year [] (-> (js/Date.) .getFullYear .toString))
 
@@ -33,6 +34,20 @@
                         (when (= (get-in @state [:grid-highlight]) x)
                           "highlight")]}]]))]))]])
 
+(defn component-envelope []
+  [:span.envelope
+   {:ref
+    (fn [el]
+      (when el
+        (let [env (nx/Envelope.
+                    el (clj->js {:size [300 100]
+                                 :points [{:x 0.1 :y 0.4}
+                                          {:x 0.5 :y 0.1}]}))
+              style (js/getComputedStyle el)]
+          (.colorize env "fill" (.getPropertyValue style "--color-2-shadow"))
+          (.colorize env "accent" (.getPropertyValue style "--color-2"))
+          (.on env "change" (fn [v] (js/console.log "envelope" v))))))}])
+
 (defn component-main [state]
   [:<>
    [:header
@@ -56,7 +71,9 @@
      [:div.row.right
       [:button "This"]]
      [:ui-block [:span.title "Drums"]
-      [component-demo-grid state]]]
+      [component-demo-grid state]]
+     [:ui-block
+      [component-envelope]]]
     [:section.typography
      [:h2 "Typography"]
      [:details
