@@ -35,17 +35,14 @@
                           "highlight")]}]]))]))]])
 
 (defn component-envelope []
-  [:span.envelope
+  [:span.envelope.nxui
    {:ref
     (fn [el]
       (when el
         (let [env (nx/Envelope.
                     el (clj->js {:size [300 100]
                                  :points [{:x 0.1 :y 0.4}
-                                          {:x 0.5 :y 0.1}]}))
-              style (js/getComputedStyle el)]
-          (.colorize env "fill" (.getPropertyValue style "--color-2-shadow"))
-          (.colorize env "accent" (.getPropertyValue style "--color-2"))
+                                          {:x 0.5 :y 0.1}]}))]
           (.on env "change" (fn [v] (js/console.log "envelope" v))))))}])
 
 (defn component-main [state]
@@ -73,7 +70,8 @@
      [:ui-block [:span.title "Drums"]
       [component-demo-grid state]]
      [:ui-block
-      [component-envelope]]]
+      [component-envelope]]
+     [component-envelope]]
     [:section.typography
      [:h2 "Typography"]
      [:details
@@ -87,8 +85,12 @@
     " McCormick IT Pty Ltd."]])
 
 (defn start {:dev/after-load true} []
-  (rdom/render [component-main state]
-               (js/document.getElementById "app")))
+  (let [app (js/document.getElementById "app")
+        style (js/getComputedStyle app)]
+    ; set nexus ui colors
+    (aset nx "colors" "accent" (.getPropertyValue style "--color-2"))
+    (aset nx "colors" "fill" (.getPropertyValue style "--color-2-shadow"))
+    (rdom/render [component-main state] app)))
 
 (defn init []
   (start))

@@ -201,15 +201,18 @@ ui-block .title {
 
 /* nexus stuff */
 
-.envelope {
+.nxui {
 }
 
-.envelope svg {
+.nxui svg {
   background-color: transparent !important;
-  background-color: var(--color-semitransparent) !important;
-  border: 1px solid var(--color-semitransparent);
   border-radius: var(--radius);
   display: inline;
+}
+
+ui-block .nxui {
+  background-color: var(--color-semitransparent) !important;
+  border: 1px solid var(--color-semitransparent);
 }
 
 /* drum grid */
