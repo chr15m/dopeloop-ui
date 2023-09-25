@@ -83,14 +83,14 @@
       [:row.title "Drums"]
       [:row [component-demo-grid state]]]
      [:card
-      [:row.center
+      [:row
        [component-envelope]
        [:span
         (doall
           (for [_ (range 4)]
             [component-dial]))]]]
      [:card.alt
-      [:row.center
+      [:row
        [component-envelope]
        [:span
         (doall
@@ -117,4 +117,10 @@
     (rdom/render [component-main state] app)))
 
 (defn init []
+  (let [updater
+        (fn updater []
+          (js/console.log "hi")
+          (swap! state update-in [:grid-highlight] #(-> % inc (mod 16)))
+          (js/setTimeout updater 250))]
+    (updater))
   (start))
