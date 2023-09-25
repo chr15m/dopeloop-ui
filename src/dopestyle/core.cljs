@@ -66,35 +66,36 @@
     [:h1.fat {:title "Style guide"} "Style guide"]
     [:section.ui
      [:h2 "UI Styles"]
-     [:div.row
+     [:row
       [:button "First"]
       [:button "One two"]
       [:button "Hello"]]
-     [:div.row.right
-      [:button "This"]]
-     [:div.row
+     [:card.alt [:row.right
+      [:button "This"]]]
+     [:row
       [:button {:data-notification-text "Longer notification. Yes!"
                 :on-click #(button-notify (-> % .-target))}
        "Notify"]
       [:button {:data-notification-text "Notify!"
                 :on-click #(button-notify (-> % .-target))}
        "Notify 2"]]
-     [:ui-block
-      [:span.row.title "Drums"]
-      [:span.row [component-demo-grid state]]]
-     [:ui-block
-      [:span.row
+     [:card.alt
+      [:row.title "Drums"]
+      [:row [component-demo-grid state]]]
+     [:card
+      [:row.center
        [component-envelope]
        [:span
         (doall
           (for [_ (range 4)]
             [component-dial]))]]]
-     [:span.row
-      [component-envelope]
-      [:span
-       (doall
-         (for [_ (range 4)]
-           [component-dial]))]]]
+     [:card.alt
+      [:row.center
+       [component-envelope]
+       [:span
+        (doall
+          (for [_ (range 4)]
+            [component-dial]))]]]]
     [:section.typography
      [:h2 "Typography"]
      [:details
