@@ -45,6 +45,17 @@
                                           {:x 0.5 :y 0.1}]}))]
           (.on env "change" (fn [v] (js/console.log "envelope" v))))))}])
 
+(defn component-dial []
+  [:span.dial.nxui
+   {:ref
+    (fn [el]
+      (when el
+        (let [dial (nx/Dial.
+                     el
+                     #js {:value 0.5
+                          :interaction "horizontal"})]
+          (.on dial "change" (fn [v] (js/console.log "dial" v))))))}])
+
 (defn component-main [state]
   [:<>
    [:header
@@ -56,22 +67,34 @@
     [:section.ui
      [:h2 "UI Styles"]
      [:div.row
+      [:button "First"]
+      [:button "One two"]
+      [:button "Hello"]]
+     [:div.row.right
+      [:button "This"]]
+     [:div.row
       [:button {:data-notification-text "Longer notification. Yes!"
                 :on-click #(button-notify (-> % .-target))}
        "Notify"]
       [:button {:data-notification-text "Notify!"
                 :on-click #(button-notify (-> % .-target))}
        "Notify 2"]]
-     [:div.row
-      #_ [:button "One two"]
-      [:button "Hello"]]
-     [:div.row.right
-      [:button "This"]]
-     [:ui-block [:span.title "Drums"]
-      [component-demo-grid state]]
      [:ui-block
-      [component-envelope]]
-     [component-envelope]]
+      [:span.row.title "Drums"]
+      [:span.row [component-demo-grid state]]]
+     [:ui-block
+      [:span.row
+       [component-envelope]
+       [:span
+        (doall
+          (for [_ (range 4)]
+            [component-dial]))]]]
+     [:span.row
+      [component-envelope]
+      [:span
+       (doall
+         (for [_ (range 4)]
+           [component-dial]))]]]
     [:section.typography
      [:h2 "Typography"]
      [:details
@@ -89,7 +112,7 @@
         style (js/getComputedStyle app)]
     ; set nexus ui colors
     (aset nx "colors" "accent" (.getPropertyValue style "--color-2"))
-    (aset nx "colors" "fill" (.getPropertyValue style "--color-2-shadow"))
+    (aset nx "colors" "fill" (.getPropertyValue style "--color-1-trans"))
     (rdom/render [component-main state] app)))
 
 (defn init []
