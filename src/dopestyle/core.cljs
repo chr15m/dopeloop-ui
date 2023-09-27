@@ -50,11 +50,13 @@
    {:ref
     (fn [el]
       (when el
-        (let [dial (nx/Dial.
-                     el
-                     #js {:value 0.5
-                          :interaction "horizontal"})]
-          (.on dial "change" (fn [v] (js/console.log "dial" v))))))}])
+        (js/setTimeout
+          #(let [dial (nx/Dial.
+                        el
+                        #js {:value 0.5
+                             :interaction "horizontal"})]
+             (.on dial "change" (fn [v] (js/console.log "dial" v))))
+          0)))}])
 
 (defn component-main [state]
   [:<>
@@ -65,37 +67,39 @@
    [:main
     [:h1.fat {:title "Style guide"} "Style guide"]
     [:section.ui
-     [:h2 "UI Styles"]
-     [:row
+     [:h2 "Buttons"]
+     [:dope-row
       [:button "First"]
       [:button "One two"]
       [:button "Hello"]]
-     [:card.alt [:row.right
-      [:button "This"]]]
-     [:row
+     [:dope-card.alt [:dope-row.right
+                 [:button "This"]]]
+     [:dope-row
       [:button {:data-notification-text "Longer notification. Yes!"
                 :on-click #(button-notify (-> % .-target))}
        "Notify"]
       [:button {:data-notification-text "Notify!"
                 :on-click #(button-notify (-> % .-target))}
        "Notify 2"]]
-     [:card.alt
-      [:row.title "Drums"]
-      [:row [component-demo-grid state]]]
-     [:card
-      [:row
+     [:h2 "Grid"]
+     [:dope-card.alt
+      [:dope-row.title "Drums"]
+      [:dope-row [component-demo-grid state]]]
+     [:h2 "Audio widgets"]
+     [:dope-card
+      [:dope-row
        [component-envelope]
        [:span
         (doall
-          (for [_ (range 4)]
-            [component-dial]))]]]
-     [:card.alt
-      [:row
+          (for [i (range 4)]
+            ^{:key i} [component-dial]))]]]
+     [:dope-card.alt
+      [:dope-row
        [component-envelope]
        [:span
         (doall
-          (for [_ (range 4)]
-            [component-dial]))]]]]
+          (for [i (range 4)]
+            ^{:key i} [component-dial]))]]]]
     [:section.typography
      [:h2 "Typography"]
      [:details
@@ -119,7 +123,6 @@
 (defn init []
   (let [updater
         (fn updater []
-          (js/console.log "hi")
           (swap! state update-in [:grid-highlight] #(-> % inc (mod 16)))
           (js/setTimeout updater 250))]
     (updater))
