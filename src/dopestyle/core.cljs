@@ -2,7 +2,8 @@
   (:require
     [reagent.core :as r]
     [reagent.dom :as rdom]
-    ["nexusui" :as nx]))
+    ["nexusui" :as nx]
+    [shadow.resource :as rc]))
 
 (defonce state (r/atom {:grid-highlight 2}))
 
@@ -17,6 +18,12 @@
     ; trigger CSS reflow
     ((fn [] (aget el "offsetHeight")))
     (.add cl "notify")))
+
+(def re-html-comment (js/RegExp. "<\\!--.*?-->" "g"))
+
+(defn icon [svg]
+  [:dope-icon {:dangerouslySetInnerHTML
+               {:__html (.replace svg re-html-comment "")}}])
 
 (defn component-demo-grid [state]
   [:table.grid
@@ -68,19 +75,31 @@
     [:h1.fat {:title "Style guide"} "Style guide"]
     [:section.ui
      [:h2 "Buttons"]
-     [:dope-row
-      [:button "First"]
-      [:button "One two"]
-      [:button "Hello"]]
-     [:dope-card.alt [:dope-row.right
-                 [:button "This"]]]
-     [:dope-row
-      [:button {:data-notification-text "Longer notification. Yes!"
-                :on-click #(button-notify (-> % .-target))}
-       "Notify"]
-      [:button {:data-notification-text "Notify!"
-                :on-click #(button-notify (-> % .-target))}
-       "Notify 2"]]
+     [:dope-card
+      [:dope-row
+       [:button "First"]
+       [:button "One two"]
+       [:button "Hello"]]]
+     [:dope-card.alt
+      [:dope-row.right
+       [:button "This"]]]
+     [:dope-card
+      [:dope-row
+       [:button {:data-notification-text "Longer notification. Yes!"
+                 :on-click #(button-notify (-> % .-target))}
+        "Notify"]
+       [:button {:data-notification-text "Notify!"
+                 :on-click #(button-notify (-> % .-target))}
+        "Notify 2"]]]
+     [:dope-card.alt
+      [:dope-row
+       [:dope-row.left
+        [:button.square
+         [icon (rc/inline "icons/tabler/headphones-filled.svg")]]
+        [:button.round
+         [icon (rc/inline "icons/tabler/check.svg")]]]
+       [:button.round.large
+        [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]
      [:h2 "Grid"]
      [:dope-card.alt
       [:dope-row.title "Drums"]
@@ -116,7 +135,7 @@
   (let [app (js/document.getElementById "app")
         style (js/getComputedStyle app)]
     ; set nexus ui colors
-    (aset nx "colors" "accent" (.getPropertyValue style "--color-2"))
+    (aset nx "colors" "accent" (.getPropertyValue style "--color-1"))
     (aset nx "colors" "fill" (.getPropertyValue style "--color-1-trans"))
     (rdom/render [component-main state] app)))
 

@@ -2,9 +2,12 @@
   "name": "dopestyle",
   "version": "0.0.1",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.2",
+    "@tabler/icons": "^2.35.0",
     "nexusui": "^2.1.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.11.0",
     "shadow-cljs": "^2.16.12"
   }
 }

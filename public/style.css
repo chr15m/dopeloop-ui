@@ -85,8 +85,16 @@ dope-row.right :only-child {
   margin-left: auto;
 }
 
+dope-row.left {
+  justify-content: start;
+}
+
 dope-row.center {
   justify-content: space-around;
+}
+
+dope-row > * + * {
+  margin-left: 0.25em !important;
 }
 
 dope-row + dope-row {
@@ -145,6 +153,7 @@ button {
   font-weight: bold;
   -webkit-tap-highlight-color: transparent;
   position: relative;
+  height: 48px;
 }
 
 button:disabled {
@@ -153,6 +162,7 @@ button:disabled {
 
 button:active {
   margin-block-start: 4px;
+  height: 44px;
   border: 0px solid var(--color-2);
 }
 
@@ -207,6 +217,39 @@ button.multistate.on {
 
 button.multistate.highlight.on {
   background-color: var(--color-2-highlight);
+}
+
+button.square {
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.round {
+  width: 48px;
+  border-radius: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.large {
+  width: 64px;
+  height: 64px;
+}
+
+button.large:active {
+  height: 60px;
+}
+
+dope-icon svg {
+  width: 1em;
+  height: 1em;
+  /*fill: var(--color-1);*/
+  stroke: var(--color-1);
+  stroke-width: 4px !important;
+  display: flex;
 }
 
 /* nexus stuff */
@@ -280,6 +323,7 @@ table.grid td:nth-child(4n+1) {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 #loading div {
