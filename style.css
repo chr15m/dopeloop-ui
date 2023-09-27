@@ -1,0 +1,344 @@
+/*** dopeloop style ***/
+
+:root {
+  --color-bg: #444349;
+  --color-bg-2: rgba(0, 0, 0, 0.25);
+  --color-semitransparent: rgba(68, 67, 73, 0.9);
+  --color-1: #F7F1ED;
+  --color-1-shadow: #97928e;
+  --color-1-trans: rgba(247, 241, 237, 0.1);
+  --color-2: #C83737;
+  --color-2-shadow: #972A2A;
+  --color-2-highlight: #EB5252;
+  --color-3: #e7ad1b;
+  --color-3-shadow: #947B39;
+  --color-4: #888;
+  --radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Courier Prime", monospace;
+  color: var(--color-1);
+}
+
+h1, h2, h3 {
+  font-family: "Hemi Head";
+}
+
+html {
+  background-image: url("../img/stardust.png");
+}
+
+/*** basic layout ***/
+
+html, body, #app {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  max-width: 100%;
+  margin: auto;
+}
+
+header {
+  width: 100%;
+  padding: 0.5em 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h2 {
+  margin: 0px;
+  padding: 0px;
+}
+
+main {
+  width: 800px;
+  max-width: 100%;
+}
+
+footer {
+  font-size: 0.75em;
+  padding: 6em 0.25em;
+}
+
+dope-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+dope-row.right :only-child {
+  margin-left: auto;
+}
+
+dope-row.left {
+  justify-content: start;
+}
+
+dope-row.center {
+  justify-content: space-around;
+}
+
+dope-row > * + * {
+  margin-left: 0.25em !important;
+}
+
+dope-row + dope-row {
+  margin-top: 0.5em;
+}
+
+dope-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  padding: 0.25em 0.5em;
+}
+
+dope-card.alt {
+  background-color: var(--color-bg-2);
+}
+
+dope-card + dope-card, dope-card + dope-row, dope-row + dope-card {
+  margin-top: 0.5em;
+}
+
+/*** typography ***/
+
+summary {
+  cursor: pointer;
+}
+
+.fat {
+  color: var(--color-bg);
+  position: relative;
+  z-index: 0;
+}
+
+/* add a single stroke */
+.fat:before {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: 0.25em var(--color-1);
+  left: 0;
+  z-index: -1;
+}
+
+/*** ui elements ***/
+
+button {
+  margin: 0px;
+  border: none;
+  color: var(--color-1);
+  background-color: var(--color-2);
+  /*border: 1px solid var(--color-2-highlight);*/
+  border-bottom: 4px solid var(--color-2-shadow);
+  border-radius: var(--radius);
+  font-size: 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+  font-weight: bold;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  height: 48px;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+button:active {
+  margin-block-start: 4px;
+  height: 44px;
+  border: 0px solid var(--color-2);
+}
+
+button[data-notification-text]::before {
+  content: "";
+  visibility: visible;
+  opacity: 1;
+}
+
+button[data-notification-text].notify::before {
+  content: attr(data-notification-text);
+  position: absolute;
+  bottom: 105%;
+  padding: 0.25em 0.5em;
+  left: -0.5em;
+  width: 100%;
+  text-align: center;
+  color: var(--color-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  border-radius: var(--radius);
+  text-shadow: 0 0 2px var(--color-bg);
+  background-color: var(--color-semitransparent);
+  border: 1px solid var(--color-1);
+  transition: visibility 0s 2s, opacity 1s 1s linear;
+  visibility: hidden;
+  opacity: 0;
+}
+
+button.multistate {
+  width: 100%;
+  height: 48px;
+  padding: 0px;
+  border: 0px;
+  background-color: var(--color-4);
+}
+
+button.multistate.highlight {
+  background-color: var(--color-1);
+}
+
+button.multistate:active {
+  border: 0px;
+  margin: unset;
+}
+
+button.multistate.on {
+  background-color: var(--color-2);
+}
+
+button.multistate.highlight.on {
+  background-color: var(--color-2-highlight);
+}
+
+button.square {
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.round {
+  width: 48px;
+  border-radius: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.large {
+  width: 64px;
+  height: 64px;
+}
+
+button.large:active {
+  height: 60px;
+}
+
+dope-icon svg {
+  width: 1em;
+  height: 1em;
+  /*fill: var(--color-1);*/
+  stroke: var(--color-1);
+  stroke-width: 4px !important;
+  display: flex;
+}
+
+/* nexus stuff */
+
+.nxui {
+}
+
+.nxui svg {
+  border-radius: var(--radius);
+  background-color: transparent !important;
+  display: inline;
+}
+
+.nxui.envelope svg {
+  background-color: var(--color-1-trans) !important;
+}
+
+.nxui.dial {
+  width: 75px;
+  height: 75px;
+}
+
+.nxui.dial svg {
+  width: 75px;
+  height: 75px;
+}
+
+/* drum grid */
+
+table.grid {
+  margin: auto;
+  width: 100%;
+}
+
+table.grid th {
+  width: 0px;
+  text-align: right;
+  font-weight: normal;
+  font-size: 0.75em;
+  padding-right: 0.25em;
+}
+
+table.grid td {
+  width: 48px;
+}
+
+table.grid td:nth-child(4n+1) {
+  width: 52px;
+  padding-right: 4px;
+}
+
+/*** device specific ***/
+
+@media only screen and (max-width: 600px) {
+  #app {
+    font-size: 0.75em;
+    padding: 0.25em;
+  }
+
+  dope-card {
+  }
+
+  dope-row {
+    flex-wrap: wrap;
+  }
+}
+
+/*** loading spinner ***/
+
+#loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+#loading div {
+  animation: spin 0.33s linear infinite;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  border: 3px solid transparent;
+  border-left: 3px solid silver;
+  border-right: 3px solid silver;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@import url(fonts/fonts.css);
