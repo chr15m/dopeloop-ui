@@ -32,6 +32,11 @@
   [:dope-icon {:dangerouslySetInnerHTML
                {:__html (.replace svg re-html-comment "")}}])
 
+(defn inline-img [svg attrs]
+  [:dope-inline-svg (merge {:dangerouslySetInnerHTML
+                            {:__html svg}}
+                           attrs)])
+
 (defn component-demo-grid [state]
   [:table.grid
    [:tbody
@@ -123,11 +128,14 @@
 (defn component-main [state]
   [:<>
    [:header
-    [:h2 "Dopeloop"]
+    [:a {:href "https://dopeloop.ai"}
+     [inline-img (rc/inline "img/favicon.svg") {:class "logo"}]
+     [:h2 "dopeloop.ai"]]
     [:nav
-     [:a {:href "/auth/sign-in"} "Sign in"]]]
+     [:a {:href "https://dopeloop.ai"} "Somelink"]
+     [:a {:href "https://dopeloop.ai/auth/sign-in"} "Sign in"]]]
    [:main
-    [:h1.fat {:title "Style guide"} "Style guide"]
+    [:h1.fat {:title "Design reference"} "Design reference"]
     [:section.ui
      [:h2 "Buttons"]
      [:dope-card
@@ -177,6 +185,8 @@
      [:h2 "Wave"]
      [:dope-card
       [component-waveform state [:waveform]]]]
+    ; TODO: sliders
+    ; TODO: BPM component
     [:section.typography
      [:h2 "Typography"]
      [:details

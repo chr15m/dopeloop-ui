@@ -58,9 +58,29 @@ header {
   align-items: center;
 }
 
+header > * {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+header > nav {
+  gap: 1em;
+}
+
 header h2 {
   margin: 0px;
   padding: 0px;
+}
+
+header a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header .logo svg {
+  max-width: 3em;
+  max-height: 3em;
 }
 
 main {
@@ -116,7 +136,11 @@ dope-card + dope-card, dope-card + dope-row, dope-row + dope-card {
   margin-top: 0.5em;
 }
 
-/*** typography ***/
+/*** basic brand styles ***/
+
+a:hover {
+  color: var(--color-2-highlight);
+}
 
 summary {
   cursor: pointer;
