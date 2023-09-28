@@ -277,6 +277,23 @@ dope-icon svg {
   height: 75px;
 }
 
+/* waveform stuff */
+
+.wave dope-row {
+  margin-top: -32px;
+  z-index: 3;
+  position: relative;
+  opacity: 0.5;
+}
+
+.wave dope-row:hover {
+  opacity: 1;
+}
+
+.wave .waveform:hover + dope-row {
+  opacity: 1;
+}
+
 /* drum grid */
 
 table.grid {
@@ -307,9 +324,6 @@ table.grid td:nth-child(4n+1) {
   #app {
     font-size: 0.75em;
     padding: 0.25em;
-  }
-
-  dope-card {
   }
 
   dope-row {

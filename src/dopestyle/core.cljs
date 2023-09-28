@@ -1,9 +1,10 @@
 (ns dopestyle.core
   (:require
+    [shadow.resource :as rc]
     [reagent.core :as r]
     [reagent.dom :as rdom]
     ["nexusui" :as nx]
-    [shadow.resource :as rc]))
+    ["wavesurfer.js" :as ws]))
 
 (defonce state
   (r/atom
@@ -71,6 +72,54 @@
              (.on dial "change" (fn [v] (js/console.log "dial" v))))
           0)))}])
 
+(defn mount-wavesurfer [el reference]
+  (js/console.log "render wavesurfer" el)
+  (if el
+    (let [style (js/getComputedStyle el)
+          ws (.create ws
+                      #js {:container el
+                           :waveColor
+                           (.getPropertyValue style "--color-1")
+                           :progressColor
+                           (.getPropertyValue style "--color-2")
+                           :barWidth 3
+                           :barGap 1
+                           :barRadius 3
+                           :cursorWidth 3
+                           :dragToSeek true
+                           :url "snd/ae.mp3"})]
+      (.on ws "finish" #(swap! reference assoc :playing false))
+      (swap! reference assoc :ws ws))
+    (when (:ws @reference)
+      (js/console.log "destroy ws")
+      (.destroy (:ws @reference)))))
+
+(defn component-waveform-controls [state coords]
+  (let [play-coords (conj coords :playing)
+        playing (get-in @state play-coords)]
+    [:dope-row.right
+     [:button.round
+      {:on-click (fn []
+                   (swap! state update-in play-coords
+                          (fn [playing]
+                            (let [player (get-in @state
+                                                 (conj coords :ws))
+                                  playing-updated (not playing)]
+                              (when player
+                                (if playing
+                                  (.pause player)
+                                  (.play player)))
+                              playing-updated))))}
+      [icon (if playing
+              (rc/inline "icons/tabler/player-pause-filled.svg")
+              (rc/inline "icons/tabler/player-play-filled.svg"))]]]))
+
+(defn component-waveform [state coords]
+  [:div.wave
+   [:div.waveform
+    {:ref #(mount-wavesurfer % (r/cursor state coords))}]
+   [component-waveform-controls state coords]])
+
 (defn component-main [state]
   [:<>
    [:header
@@ -110,7 +159,7 @@
      [:dope-card.alt
       [:dope-row.title "Drums"]
       [:dope-row [component-demo-grid state]]]
-     [:h2 "Audio widgets"]
+     [:h2 "Audio parameter widgets"]
      [:dope-card
       [:dope-row
        [component-envelope]
@@ -124,7 +173,10 @@
        [:span
         (doall
           (for [i (range 4)]
-            ^{:key i} [component-dial]))]]]]
+            ^{:key i} [component-dial]))]]]
+     [:h2 "Wave"]
+     [:dope-card
+      [component-waveform state [:waveform]]]]
     [:section.typography
      [:h2 "Typography"]
      [:details
