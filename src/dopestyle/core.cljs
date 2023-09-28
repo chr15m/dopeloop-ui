@@ -5,7 +5,13 @@
     ["nexusui" :as nx]
     [shadow.resource :as rc]))
 
-(defonce state (r/atom {:grid-highlight 2}))
+(defonce state
+  (r/atom
+    {:grid  [{0 true 8 true 3 true}
+             {4 true 12 true}
+             {0 true 2 true 4 true 6 true 7 true
+              8 false 10 true 12 true 13 true 14 true}]
+     :grid-highlight 2}))
 
 (defn year [] (-> (js/Date.) .getFullYear .toString))
 
@@ -36,8 +42,8 @@
            (for [x (range 16)]
              [:td {:key x}
               [:button.multistate
-               {:on-click #(swap! state update-in [:grid x y] not)
-                :class [(when (get-in @state [:grid x y]) "on")
+               {:on-click #(swap! state update-in [:grid y x] not)
+                :class [(when (get-in @state [:grid y x]) "on")
                         (when (= (get-in @state [:grid-highlight]) x)
                           "highlight")]}]]))]))]])
 
