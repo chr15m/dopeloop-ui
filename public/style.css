@@ -144,10 +144,6 @@ dope-group {
   gap: 0.25em;
 }
 
-dope-group.center {
-  margin: auto;
-}
-
 /*** basic brand styles ***/
 
 a:hover {
@@ -415,6 +411,10 @@ table.grid td:nth-child(4n+1) {
 
   dope-row {
     flex-wrap: wrap;
+  }
+
+  dope-row.center-bias {
+    justify-content: space-around;
   }
 }
 

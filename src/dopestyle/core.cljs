@@ -198,14 +198,14 @@
       [:dope-row [component-demo-grid state]]]
      [:h2 "Audio parameter widgets"]
      [:dope-card
-      [:dope-row.center
+      [:dope-row.center-bias
        [component-envelope]
        [:span
         (doall
           (for [i (range 4)]
             ^{:key i} [component-dial]))]]]
      [:dope-card.alt
-      [:dope-row.center
+      [:dope-row.center-bias
        [component-envelope]
        [:span
         (doall
