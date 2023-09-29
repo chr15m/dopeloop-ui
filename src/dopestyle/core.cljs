@@ -175,13 +175,14 @@
         "Notify 2"]]]
      [:dope-card.alt
       [:dope-row
-       [:dope-row.left
+       [:dope-group
         [:button.square
          [icon (rc/inline "icons/tabler/headphones-filled.svg")]]
         [:button.round
          [icon (rc/inline "icons/tabler/check.svg")]]]
-       [:button.round.large
-        [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]
+       [:dope-group
+        [:button.round.large
+         [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]]
      [:h2 "Sliders"]
      [:dope-card
       [:dope-row
@@ -197,14 +198,14 @@
       [:dope-row [component-demo-grid state]]]
      [:h2 "Audio parameter widgets"]
      [:dope-card
-      [:dope-row
+      [:dope-row.center
        [component-envelope]
        [:span
         (doall
           (for [i (range 4)]
             ^{:key i} [component-dial]))]]]
      [:dope-card.alt
-      [:dope-row
+      [:dope-row.center
        [component-envelope]
        [:span
         (doall
