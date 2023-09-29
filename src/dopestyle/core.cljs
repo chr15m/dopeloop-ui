@@ -26,6 +26,8 @@
     ((fn [] (aget el "offsetHeight")))
     (.add cl "notify")))
 
+(defn ev-val [ev] (-> ev .-target .-value))
+
 (def re-html-comment (js/RegExp. "<\\!--.*?-->" "g"))
 
 (defn icon [svg]
@@ -36,6 +38,9 @@
   [:dope-inline-svg (merge {:dangerouslySetInnerHTML
                             {:__html svg}}
                            attrs)])
+
+(defn update-val! [state coords ev]
+  (swap! state update-in coords (-> ev .-target .-value)))
 
 (defn component-demo-grid [state]
   [:table.grid
@@ -125,6 +130,22 @@
     {:ref #(mount-wavesurfer % (r/cursor state coords))}]
    [component-waveform-controls state coords]])
 
+(defn component-slider [slider-name value min-val max-val & [props]]
+  (let [midpoint (/ (+ min-val max-val) 2)]
+    [:dope-slider 
+     [:label (when (< value midpoint) {:class "right"})
+      [:span slider-name]]
+     [:input
+      (merge
+        {:type "range"
+         :min min-val
+         :max max-val
+         ;:on-change #(update-val! state [k] %)
+         ;:on-mouse-up #(update-loop! state)
+         ;:on-touch-end #(update-loop! state)
+         :value value}
+        props)]]))
+
 (defn component-main [state]
   [:<>
    [:header
@@ -163,6 +184,15 @@
          [icon (rc/inline "icons/tabler/check.svg")]]]
        [:button.round.large
         [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]
+     [:h2 "Sliders"]
+     [:dope-card
+      [:dope-row
+       (let [v (r/cursor state [:sliders :thing])]
+         [component-slider "thing" @v 0 127
+          {:on-change #(reset! v (ev-val %))}])
+       (let [v (r/cursor state [:sliders :whatsit])]
+         [component-slider "whatsit" @v 0 127
+          {:on-change #(reset! v (ev-val %))}])]]
      [:h2 "Grid"]
      [:dope-card.alt
       [:dope-row.title "Drums"]
@@ -185,7 +215,6 @@
      [:h2 "Wave"]
      [:dope-card
       [component-waveform state [:waveform]]]]
-    ; TODO: sliders
     ; TODO: BPM component
     [:section.typography
      [:h2 "Typography"]

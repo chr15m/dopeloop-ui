@@ -276,6 +276,82 @@ dope-icon svg {
   display: flex;
 }
 
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 48px;
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid var(--color-1);
+  margin: 0px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px;
+  height: 48px;
+  background: var(--color-1);
+  border: 0px;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 46px;
+  height: 46px;
+  background: var(--color-1);
+  border: 0px;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+dope-slider {
+  width: 100%;
+  position: relative;
+}
+
+dope-slider label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 0.5em;
+  pointer-events: none;
+}
+
+dope-slider label.right {
+  flex-direction: row-reverse;
+}
+
+/*dope-slider label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0px 0.5em;
+  pointer-events: none;
+}*/
+
+/*dope-slider label {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}**/
+
+/*dope-slider label > span:first-child {
+  float: left;
+  margin-bottom: -2em;
+}
+
+dope-slider label > span.right:first-child {
+  float: right;
+}*/
+
 /* nexus stuff */
 
 .nxui {
