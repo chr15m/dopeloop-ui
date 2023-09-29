@@ -27,7 +27,7 @@ h1, h2, h3 {
 }
 
 html {
-  background-image: url("img/stardust.png");
+  background-image: url("style/img/stardust.png");
 }
 
 /*** basic layout ***/
@@ -442,4 +442,4 @@ table.grid td:nth-child(4n+1) {
   100% { transform: rotate(360deg); }
 }
 
-@import url(fonts/fonts.css);
+@import url("style/fonts/fonts.css");
