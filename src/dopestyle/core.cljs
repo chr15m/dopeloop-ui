@@ -83,7 +83,6 @@
           0)))}])
 
 (defn mount-wavesurfer [el reference]
-  (js/console.log "render wavesurfer" el)
   (if el
     (let [style (js/getComputedStyle el)
           ws (.create ws
@@ -101,7 +100,6 @@
       (.on ws "finish" #(swap! reference assoc :playing false))
       (swap! reference assoc :ws ws))
     (when (:ws @reference)
-      (js/console.log "destroy ws")
       (.destroy (:ws @reference)))))
 
 (defn component-waveform-controls [state coords]
