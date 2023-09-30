@@ -144,15 +144,23 @@
          :value value}
         props)]]))
 
+(defn component-header []
+  [:header
+   [:a {:href "https://dopeloop.ai"}
+    [inline-img (rc/inline "style/img/favicon.svg") {:class "logo"}]
+    [:h2 "dopeloop.ai"]]
+   [:nav
+    [:a {:href "https://dopeloop.ai"} "Somelink"]
+    [:a {:href "https://dopeloop.ai/auth/sign-in"} "Sign in"]]])
+
+(defn component-footer []
+  [:footer "Copyright "
+    (year)
+    " McCormick IT Pty Ltd."])
+
 (defn component-main [state]
   [:<>
-   [:header
-    [:a {:href "https://dopeloop.ai"}
-     [inline-img (rc/inline "img/favicon.svg") {:class "logo"}]
-     [:h2 "dopeloop.ai"]]
-    [:nav
-     [:a {:href "https://dopeloop.ai"} "Somelink"]
-     [:a {:href "https://dopeloop.ai/auth/sign-in"} "Sign in"]]]
+   [component-header]
    [:main
     [:h1.fat {:title "Design reference"} "Design reference"]
     [:section.ui
@@ -223,9 +231,7 @@
         [:p {:key p}
          (for [s (range (int (inc (* (js/Math.random) 10))))]
            [:span {:key s} "Ipsum lorem something. "])])]]]
-   [:footer "Copyright "
-    (year)
-    " McCormick IT Pty Ltd."]])
+   [component-footer]])
 
 (defn start {:dev/after-load true} []
   (let [app (js/document.getElementById "app")
