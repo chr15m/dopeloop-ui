@@ -83,7 +83,7 @@
              (.on dial "change" (fn [v] (js/console.log "dial" v))))
           0)))}])
 
-(defn mount-wavesurfer [el reference]
+(defn mount-wavesurfer [el reference url]
   (if el
     (let [style (js/getComputedStyle el)
           ws (.create ws
@@ -97,7 +97,7 @@
                            :barRadius 3
                            :cursorWidth 3
                            :dragToSeek true
-                           :url "snd/ae.mp3"})]
+                           :url url})]
       (.on ws "finish" #(swap! reference assoc :playing false))
       (swap! reference assoc :ws ws))
     (when (:ws @reference)
@@ -123,10 +123,10 @@
               (rc/inline "icons/tabler/player-pause-filled.svg")
               (rc/inline "icons/tabler/player-play-filled.svg"))]]]))
 
-(defn component-waveform [state coords]
+(defn component-waveform [state coords url]
   [:div.wave
    [:div.waveform
-    {:ref #(mount-wavesurfer % (r/cursor state coords))}]
+    {:ref #(mount-wavesurfer % (r/cursor state coords) url)}]
    [component-waveform-controls state coords]])
 
 (defn component-slider [slider-name value min-val max-val & [props]]
@@ -223,7 +223,7 @@
             ^{:key i} [component-dial]))]]]
      [:h2 "Wave"]
      [:dope-card
-      [component-waveform state [:waveform]]]]
+      [component-waveform state [:waveform] "snd/ae.mp3"]]]
     ; TODO: BPM component
     [:section.typography
      [:h2 "Typography"]
