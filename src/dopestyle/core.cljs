@@ -30,9 +30,10 @@
 
 (def re-html-comment (js/RegExp. "<\\!--.*?-->" "g"))
 
-(defn icon [svg]
-  [:dope-icon {:dangerouslySetInnerHTML
-               {:__html (.replace svg re-html-comment "")}}])
+(defn icon [svg attrs]
+  [:dope-icon (merge {:dangerouslySetInnerHTML
+                      {:__html (.replace svg re-html-comment "")}}
+                     attrs)])
 
 (defn inline-img [svg attrs]
   [:dope-inline-svg (merge {:dangerouslySetInnerHTML
