@@ -244,7 +244,7 @@ button {
   font-weight: bold;
   -webkit-tap-highlight-color: transparent;
   position: relative;
-  height: 2.5em;
+  height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -257,7 +257,7 @@ button:disabled {
 
 button:active {
   margin-block-start: 4px;
-  height: 44px;
+  height: calc(2em - 4px);
   border: 0px solid var(--color-2);
 }
 
@@ -265,6 +265,7 @@ button[data-notification-text]::before {
   content: "";
   visibility: visible;
   opacity: 1;
+  position: absolute;
 }
 
 button[data-notification-text].notify::before {
@@ -284,7 +285,7 @@ button[data-notification-text].notify::before {
   text-shadow: 0 0 2px var(--color-bg);
   background-color: var(--color-semitransparent);
   border: 1px solid var(--color-1);
-  transition: visibility 0s 2s, opacity 1s 1s linear;
+  transition: visibility 0s 2s, opacity 1s 1s linear, display 0s 0s;
   visibility: hidden;
   opacity: 0;
 }
@@ -322,6 +323,10 @@ button.square {
   align-items: center;
 }
 
+button.square:active {
+  height: 44px;
+}
+
 button.round {
   width: 48px;
   height: 48px;
@@ -329,6 +334,10 @@ button.round {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+button.round:active {
+  height: 44px;
 }
 
 button.large {
