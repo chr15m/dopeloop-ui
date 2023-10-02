@@ -188,6 +188,10 @@ button {
   -webkit-tap-highlight-color: transparent;
   position: relative;
   height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
 }
 
 button:disabled {
@@ -283,7 +287,16 @@ dope-icon svg {
   /*fill: var(--color-1);*/
   stroke: var(--color-1);
   stroke-width: 4px !important;
+  display: inline-flex;
+}
+
+button.square dope-icon svg, button.round dope-icon svg {
   display: flex;
+}
+
+dope-icon.sz-2x svg {
+  width: 2em;
+  height: 2em;
 }
 
 input[type="range"] {
