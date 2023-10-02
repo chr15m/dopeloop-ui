@@ -66,10 +66,6 @@ header > * {
   gap: 0.5em;
 }
 
-header > nav {
-  gap: 1em;
-}
-
 header h2 {
   margin: 0px;
   padding: 0px;
@@ -83,6 +79,67 @@ header a {
 header .logo svg {
   max-width: 2em;
   max-height: 2em;
+}
+
+nav {
+}
+
+dope-menu label {
+  cursor: pointer;
+}
+
+dope-menu ul {
+  display: flex;
+  list-style-type: none;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-1-shadow);
+  gap: 1em;
+}
+
+dope-menu ul li {
+  text-shadow: 0px 0px 2px black;
+}
+
+dope-menu input[type="checkbox"] {
+  display: none;
+}
+
+dope-menu input ~ label dope-icon:nth-child(1) {
+  display: flex;
+}
+
+dope-menu input ~ label dope-icon:nth-child(2) {
+  display: none;
+}
+
+dope-menu input:checked ~ label dope-icon:nth-child(1) {
+  display: none;
+}
+
+dope-menu input:checked ~ label dope-icon:nth-child(2) {
+  display: flex;
+}
+
+dope-menu ul {
+  display: none;
+}
+
+dope-menu input:checked ~ ul {
+  display: flex;
+}
+
+dope-menu ul {
+  position: absolute;
+  margin-top: 0.5em;
+  padding: 2em 0px;
+  left: calc(100% - 15em);
+  right: 0.5em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-semitransparent);
+  z-index: 10;
+  box-shadow: 0px 0px 5px -2px var(--color-1);
 }
 
 main {
@@ -187,7 +244,7 @@ button {
   font-weight: bold;
   -webkit-tap-highlight-color: transparent;
   position: relative;
-  height: 48px;
+  height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,7 +257,7 @@ button:disabled {
 
 button:active {
   margin-block-start: 4px;
-  height: 44px;
+  height: calc(2em - 4px);
   border: 0px solid var(--color-2);
 }
 
@@ -208,6 +265,7 @@ button[data-notification-text]::before {
   content: "";
   visibility: visible;
   opacity: 1;
+  position: absolute;
 }
 
 button[data-notification-text].notify::before {
@@ -227,7 +285,7 @@ button[data-notification-text].notify::before {
   text-shadow: 0 0 2px var(--color-bg);
   background-color: var(--color-semitransparent);
   border: 1px solid var(--color-1);
-  transition: visibility 0s 2s, opacity 1s 1s linear;
+  transition: visibility 0s 2s, opacity 1s 1s linear, display 0s 0s;
   visibility: hidden;
   opacity: 0;
 }
@@ -259,17 +317,27 @@ button.multistate.highlight.on {
 
 button.square {
   width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+button.square:active {
+  height: 44px;
+}
+
 button.round {
   width: 48px;
+  height: 48px;
   border-radius: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+button.round:active {
+  height: 44px;
 }
 
 button.large {
@@ -282,8 +350,8 @@ button.large:active {
 }
 
 dope-icon svg {
-  width: 1em;
-  height: 1em;
+  width: 32px;
+  height: 32px;
   /*fill: var(--color-1);*/
   stroke: var(--color-1);
   stroke-width: 4px !important;
@@ -294,9 +362,9 @@ button.square dope-icon svg, button.round dope-icon svg {
   display: flex;
 }
 
-dope-icon.sz-2x svg {
-  width: 2em;
-  height: 2em;
+dope-icon .large svg {
+  width: 64px;
+  height: 64px;
 }
 
 input[type="range"] {
@@ -366,13 +434,13 @@ dope-slider label.right {
 }
 
 .nxui.dial {
-  width: 75px;
-  height: 75px;
+  width: 72px;
+  height: 72px;
 }
 
 .nxui.dial svg {
-  width: 75px;
-  height: 75px;
+  width: 72px;
+  height: 72px;
 }
 
 /* waveform stuff */
@@ -420,8 +488,12 @@ table.grid td:nth-child(4n+1) {
 
 @media only screen and (max-width: 600px) {
   #app {
-    font-size: 0.75em;
+    font-size: 0.66em;
     padding: 0.25em;
+  }
+
+  header h2 {
+    display: none;
   }
 
   dope-row {
