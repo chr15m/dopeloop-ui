@@ -32,7 +32,7 @@
 
 @font-face {
   font-family: 'Hemi Head';
-  src: local('Hemi Head Bold Italic'), url('hemi head bd it.woff') format('woff');
+  src: url('HemiHead426.woff2');
   font-style: normal;
   font-weight: normal;
   font-display: swap;
