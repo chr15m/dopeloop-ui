@@ -147,8 +147,9 @@
 (defn component-header []
   [:header
    [:a {:href "https://dopeloop.ai"}
-    [inline-img (rc/inline "style/img/favicon.svg") {:class "logo"}]
+    [inline-img (rc/inline "style/img/logo.svg") {:class "logo"}]
     [:h2 "dopeloop.ai"]]
+   ; TODO: make this a hamburger menu
    [:nav
     [:a {:href "https://dopeloop.ai"} "Somelink"]
     [:a {:href "https://dopeloop.ai/auth/sign-in"} "Sign in"]]])
