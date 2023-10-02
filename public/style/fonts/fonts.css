@@ -3,6 +3,7 @@
   src: url('CourierPrime-Bold.woff2');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
   src: url('CourierPrime-BoldItalic.woff2');
   font-weight: bold;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
   src: url('CourierPrime-Italic.woff2');
   font-weight: normal;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -24,11 +27,13 @@
   src: url('CourierPrime-Regular.woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Hemi Head';
+  src: local('Hemi Head Bold Italic'), url('hemi head bd it.woff') format('woff');
   font-style: normal;
   font-weight: normal;
-  src: local('Hemi Head Bold Italic'), url('hemi head bd it.woff') format('woff');
+  font-display: swap;
 }
