@@ -65,7 +65,7 @@
     (fn [el]
       (when el
         (let [env (nx/Envelope.
-                    el (clj->js {:size [300 100]
+                    el (clj->js {:size [288 96]
                                  :points [{:x 0.1 :y 0.4}
                                           {:x 0.5 :y 0.1}]}))]
           (.on env "change" (fn [v] (js/console.log "envelope" v))))))}])
@@ -78,7 +78,8 @@
         (js/setTimeout
           #(let [dial (nx/Dial.
                         el
-                        #js {:value 0.5
+                        #js {:size #js [72 72]
+                             :value 0.5
                              :interaction "horizontal"})]
              (.on dial "change" (fn [v] (js/console.log "dial" v))))
           0)))}])
@@ -96,6 +97,7 @@
                            :barGap 1
                            :barRadius 3
                            :cursorWidth 3
+                           :height 144
                            :dragToSeek true
                            :url url})]
       (.on ws "finish" #(swap! reference assoc :playing false))
@@ -152,8 +154,15 @@
     [:h2 "dopeloop.ai"]]
    ; TODO: make this a hamburger menu
    [:nav
-    [:a {:href "https://dopeloop.ai"} "Somelink"]
-    [:a {:href "https://dopeloop.ai/auth/sign-in"} "Sign in"]]])
+    [:a {:href "https://dopeloop.ai/auth/sign-in"} "Sign in"]
+    [:dope-menu
+     [:input {:type "checkbox" :id "nav-menu-dropdown"}]
+     [:label {:for "nav-menu-dropdown"}
+      [icon (rc/inline "icons/tabler/menu.svg")]
+      [icon (rc/inline "icons/tabler/x.svg")]]
+     [:ul
+      [:li [:a {:href "https://dopeloop.ai"} "Somelink"]]
+      [:li [:a {:href "https://dopeloop.ai"} "Another link"]]]]]])
 
 (defn component-footer []
   [:footer "Copyright "
