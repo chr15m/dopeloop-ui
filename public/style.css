@@ -147,6 +147,13 @@ main {
   max-width: 100%;
 }
 
+section.action-bar {
+  position: fixed;
+  bottom: 0px;
+  width: 800px;
+  max-width: 100%;
+}
+
 footer {
   font-size: 0.75em;
   padding: 2em 0.25em;
@@ -436,7 +443,7 @@ dope-tempo {
 }
 
 dope-tempo input {
-  width: 6ch;
+  width: 6.5ch;
   padding: 0.25em;
   font-weight: bold;
 }
