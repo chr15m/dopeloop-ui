@@ -230,6 +230,15 @@ summary {
 
 /*** ui elements ***/
 
+input {
+  font-size: 1em;
+  color: var(--color-1);
+  background-color: var(--color-bg-2);
+  border-radius: var(--radius);
+  border: 2px solid var(--color-1-shadow);
+  padding: 0.25em 1em;
+}
+
 button {
   margin: 0px;
   border: none;
@@ -356,6 +365,8 @@ dope-icon svg {
   stroke: var(--color-1);
   stroke-width: 4px !important;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button.square dope-icon svg, button.round dope-icon svg {
@@ -416,6 +427,22 @@ dope-slider label {
 
 dope-slider label.right {
   flex-direction: row-reverse;
+}
+
+dope-tempo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+dope-tempo input {
+  width: 6ch;
+  padding: 0.25em;
+  font-weight: bold;
+}
+
+dope-tempo > * {
+  margin: 0px 0.25em;
 }
 
 /* nexus stuff */
