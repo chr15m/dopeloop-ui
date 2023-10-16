@@ -113,7 +113,7 @@
              (.on dial "change" (fn [v] (js/console.log "dial" v))))
           0)))}])
 
-(defn mount-wavesurfer [el reference url]
+(defn mount-wavesurfer [el reference wav-file]
   (if el
     (let [style (js/getComputedStyle el)
           ws (.create ws
@@ -127,8 +127,8 @@
                            :barRadius 3
                            :cursorWidth 3
                            :height 144
-                           :dragToSeek true
-                           :url url})]
+                           :dragToSeek true})]
+      (.load ws (js/URL.createObjectURL wav-file))
       (.on ws "finish" #(swap! reference assoc :playing false))
       (swap! reference assoc :ws ws))
     (when (:ws @reference)
@@ -154,10 +154,10 @@
               (rc/inline "icons/tabler/player-pause-filled.svg")
               (rc/inline "icons/tabler/player-play-filled.svg"))]]]))
 
-(defn component-waveform [state coords url]
+(defn component-waveform [state coords wav-file]
   [:div.wave
    [:div.waveform
-    {:ref #(mount-wavesurfer % (r/cursor state coords) url)}]
+    {:ref #(mount-wavesurfer % (r/cursor state coords) wav-file)}]
    [component-waveform-controls state coords]])
 
 (defn component-slider [slider-name value min-val max-val & [props]]
