@@ -191,6 +191,25 @@ dope-row + dope-row {
   margin-top: 0.5em;
 }
 
+dope-row > details {
+  width: 100%;
+}
+
+dope-row > details > summary {
+  display: inline-flex;
+  width: 100%;
+  align-items: first baseline;
+}
+
+dope-row > details > summary::before {
+  content: "▶";
+  margin-right: 0.25em;
+}
+
+dope-row > details[open] > summary::before {
+  content: "▼";
+}
+
 dope-card {
   display: flex;
   flex-direction: column;
