@@ -134,10 +134,9 @@
     (when (:ws @reference)
       (.destroy (:ws @reference)))))
 
-(defn component-waveform-controls [state coords]
+(defn component-waveform-play [state coords]
   (let [play-coords (conj coords :playing)
         playing (get-in @state play-coords)]
-    [:dope-row.right
      [:button.round
       {:on-click (fn []
                    (swap! state update-in play-coords
@@ -152,13 +151,16 @@
                               playing-updated))))}
       [icon (if playing
               (rc/inline "icons/tabler/player-pause-filled.svg")
-              (rc/inline "icons/tabler/player-play-filled.svg"))]]]))
+              (rc/inline "icons/tabler/player-play-filled.svg"))]]))
 
-(defn component-waveform [state coords wav-file]
+(defn component-waveform [state coords wav-file & [component-tools]]
   [:div.wave
    [:div.waveform
     {:ref #(mount-wavesurfer % (r/cursor state coords) wav-file)}]
-   [component-waveform-controls state coords]])
+   [:dope-row.right.controls
+    (if component-tools
+      component-tools
+      [component-waveform-play state coords])]])
 
 (defn component-slider [slider-name value min-val max-val & [props]]
   (let [midpoint (/ (+ min-val max-val) 2)]
