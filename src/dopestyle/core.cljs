@@ -153,8 +153,8 @@
               (rc/inline "icons/tabler/player-pause-filled.svg")
               (rc/inline "icons/tabler/player-play-filled.svg"))]]))
 
-(defn component-waveform [state coords wav-file & [component-tools]]
-  [:div.wave
+(defn component-waveform [state coords wav-file uid & [component-tools]]
+  [:div.wave {:key uid}
    [:div.waveform
     {:ref #(mount-wavesurfer % (r/cursor state coords) wav-file)}]
    [:dope-row.right.controls
