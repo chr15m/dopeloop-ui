@@ -354,57 +354,66 @@ button.multistate.highlight.on {
 }
 
 button.square {
-  width: 48px;
-  height: 48px;
+  width: 1.5em;
+  height: 1.5em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 button.square:active {
-  height: 44px;
+  height: calc(1.5em - 4px);
 }
 
 button.round {
-  width: 48px;
-  height: 48px;
-  border-radius: 48px;
+  width: 2em;
+  height: 2em;
+  border-radius: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 button.round:active {
-  height: 44px;
+  height: calc(2em - 4px);
 }
 
 button.large {
-  width: 64px;
-  height: 64px;
+  width: 2em;
+  height: 2em;
 }
 
 button.large:active {
-  height: 60px;
+  height: calc(2em - 4px);
+}
+
+dope-icon {
+  display: inline-flex;
 }
 
 dope-icon svg {
-  width: 32px;
-  height: 32px;
+  width: 1em;
+  height: 1em;
   /*fill: var(--color-1);*/
   stroke: var(--color-1);
-  stroke-width: 4px !important;
+  stroke-width: 3px !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
+button dope-icon svg {
+}
+
 button.square dope-icon svg, button.round dope-icon svg {
   display: flex;
+  width: 1.25em;
+  height: 1.25em;
 }
 
 dope-icon .large svg {
-  width: 64px;
-  height: 64px;
+  width: 2em;
+  height: 2em;
 }
 
 input[type="range"] {
