@@ -379,12 +379,12 @@ button.round:active {
 }
 
 button.large {
-  width: 2em;
-  height: 2em;
+  width: 3em;
+  height: 3em;
 }
 
 button.large:active {
-  height: calc(2em - 4px);
+  height: calc(3em - 4px);
 }
 
 dope-icon {
