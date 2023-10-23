@@ -15,7 +15,6 @@
     (.appendChild body link)
     (.click link)
     (.removeChild body link)
-    (js/console.log link)
     f))
 
 (defn button-notify [el]
