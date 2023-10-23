@@ -147,6 +147,10 @@ main {
   max-width: 100%;
 }
 
+section.ui {
+  margin: 1.5em 0px;
+}
+
 section.action-bar {
   position: fixed;
   bottom: 0px;
