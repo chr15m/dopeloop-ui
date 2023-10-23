@@ -7,6 +7,17 @@
 
 (defn year [] (-> (js/Date.) .getFullYear .toString))
 
+(defn trigger-file-download [f]
+  (let [link (.createElement js/document "a")
+        body (aget js/document "body")]
+    (aset link "download" (aget f "name"))
+    (aset link "href" (.createObjectURL js/URL f))
+    (.appendChild body link)
+    (.click link)
+    (.removeChild body link)
+    (js/console.log link)
+    f))
+
 (defn button-notify [el]
   (let [cl (aget el "classList")
         rmfn (fn [] (.remove cl "notify"))]
