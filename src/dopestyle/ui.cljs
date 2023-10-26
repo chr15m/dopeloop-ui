@@ -3,7 +3,9 @@
     [reagent.core :as r]
     [shadow.resource :as rc]
     [reagent.dom :as rdom]
-    [dopestyle.core :refer [component-header component-slider component-envelope component-dial component-waveform component-footer
+    [dopestyle.core :refer [component-header component-slider
+                            component-envelope component-dial
+                            component-waveform component-footer
                             set-nx-colors! ev-val button-notify icon]]))
 
 (defonce state
