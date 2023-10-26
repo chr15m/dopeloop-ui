@@ -594,6 +594,10 @@ table.grid td:nth-child(4n+1) {
   border-right: 3px solid silver;
 }
 
+.spin {
+  animation: spin 0.33s linear infinite;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
