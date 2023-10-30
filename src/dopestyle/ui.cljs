@@ -95,7 +95,7 @@
             ^{:key i} [component-dial]))]]]
      [:h2 "Wave"]
      [:dope-card
-      [component-waveform state [:waveform] "snd/ae.mp3"]]]
+      [component-waveform state [:waveform] (:wave-file @state)]]]
     ; TODO: BPM component
     [:section.typography
      [:h2 "Typography"]
@@ -118,4 +118,10 @@
           (swap! state update-in [:grid-highlight] #(-> % inc (mod 16)))
           (js/setTimeout updater 250))]
     (updater))
-  (start))
+  (-> (js/fetch "snd/ae.mp3")
+      (.then #(.arrayBuffer %))
+      (.then (fn [mp3-buffer]
+               (swap! state assoc :wave-file
+                      (js/File. #js [mp3-buffer]
+                                #js {:content-type "audio/mp3"}))))
+      (.then #(start))))
