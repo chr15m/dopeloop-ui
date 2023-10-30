@@ -415,7 +415,7 @@ dope-icon svg {
   height: 1em;
   /*fill: var(--color-1);*/
   stroke: var(--color-1);
-  stroke-width: 3px !important;
+  stroke-width: 0.1em !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
