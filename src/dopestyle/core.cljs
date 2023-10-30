@@ -163,8 +163,11 @@
               (rc/inline "icons/tabler/player-pause-filled.svg")
               (rc/inline "icons/tabler/player-play-filled.svg"))]]))
 
-(defn component-waveform [state coords wav-file uid & [component-tools]]
+(defn component-waveform [state coords wav-file uid
+                          & [component-tools component-tools-top]]
   [:div.wave {:key uid}
+   (when component-tools-top
+     [:dope-row.right.controls.top component-tools-top])
    [:div.waveform
     {:ref #(mount-wavesurfer % (r/cursor state coords) wav-file)}]
    [:dope-row.right.controls
