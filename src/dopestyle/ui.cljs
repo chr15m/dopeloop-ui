@@ -65,6 +65,18 @@
        [:dope-group
         [:button.round.large
          [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]]
+     [:h2 "Inputs"]
+     [:dope-card
+      [:dope-row
+       [:input {:placeholder "Hi"}]
+       [:dope-group
+        [:select
+         [:option "First"]
+         [:option "Second"]
+         [:option "Third"]]
+        [:button
+         [icon (rc/inline "icons/tabler/trash.svg")]
+         "Trash"]]]]
      [:h2 "Sliders"]
      [:dope-card
       [:dope-row
