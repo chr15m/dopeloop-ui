@@ -518,11 +518,16 @@ dope-tempo input {
   opacity: 0.5;
 }
 
+.wave dope-row.top {
+  margin-top: 0px;
+  margin-bottom: -32px;
+}
+
 .wave dope-row:hover {
   opacity: 1;
 }
 
-.wave .waveform:hover + dope-row {
+.wave:hover dope-row {
   opacity: 1;
 }
 
