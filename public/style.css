@@ -358,15 +358,15 @@ button.multistate.highlight.on {
 }
 
 button.square {
-  width: 1.5em;
-  height: 1.5em;
+  width: 2em;
+  height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 button.square:active {
-  height: calc(1.5em - 4px);
+  height: calc(2em - 4px);
 }
 
 button.round {
