@@ -372,6 +372,26 @@ button.multistate.highlight.on {
   background-color: var(--color-2-highlight);
 }
 
+button.multistate.on.half {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-2),
+    var(--color-2) 10px,
+    var(--color-4) 10px,
+    var(--color-4) 20px
+  );
+}
+
+button.multistate.highlight.half {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-2-highlight),
+    var(--color-2-highlight) 10px,
+    var(--color-4) 10px,
+    var(--color-4) 20px
+  );
+}
+
 button.square {
   width: 2em;
   height: 2em;
