@@ -196,17 +196,35 @@
    [:a {:href "https://dopeloop.ai"}
     [inline-img (rc/inline "style/img/logo.svg") {:class "logo"}]
     [:h2 "dopeloop.ai"]]
-   ; TODO: make this a hamburger menu
    [:nav
-    [:a {:href "https://dopeloop.ai/auth/sign-in"} "Sign in"]
+    [:button
+     [icon (rc/inline "icons/tabler/device-floppy.svg")]
+     "Save"]
     [:dope-menu
      [:input {:type "checkbox" :id "nav-menu-dropdown"}]
      [:label {:for "nav-menu-dropdown"}
       [icon (rc/inline "icons/tabler/menu.svg")]
       [icon (rc/inline "icons/tabler/x.svg")]]
-     [:ul
-      [:li [:a {:href "https://dopeloop.ai"} "Somelink"]]
-      [:li [:a {:href "https://dopeloop.ai"} "Another link"]]]]]])
+     [:dope-menu-inner
+      [:ul
+       [:li
+        [:a {:href "https://dopeloop.ai"}
+         [icon (rc/inline "icons/tabler/home.svg")]
+         "Somelink"]]
+       [:li
+        [:a {:href "https://dopeloop.ai"}
+         [icon (rc/inline "icons/tabler/ear.svg")]
+         "Another link"]]
+       [:li
+        [:a {:href "https://dopeloop.ai"}
+         [icon (rc/inline "icons/tabler/horse.svg")]
+         "Neigh"]]]
+      [:h3 "Stats"]
+      [:ul
+       [:li [:p [:strong "23"] "days"]]
+       [:li [:p [:strong "42"] "things"]]
+       [:li [:p [:strong "123"] "goober"]]]
+      [:p.note [:small "Build: deadb33f"]]]]]])
 
 (defn component-footer []
   [:footer "Copyright "

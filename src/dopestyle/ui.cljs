@@ -32,6 +32,22 @@
                         (when (= (get-in @state [:grid-highlight]) x)
                           "highlight")]}]]))]))]])
 
+(defn component-demo-action-bar [state]
+  [:section.action-bar
+   [:dope-row.right
+    [:div "Something here"]
+    [:dope-group
+     [:button
+      {:on-click #(js/alert "Download example")}
+      [icon (rc/inline "icons/tabler/download.svg")]
+      "Download"]
+     [:button.round.large
+      {:on-click #(js/alert "Play example")}
+      [icon
+       (if (-> @state :audio :playing)
+         (rc/inline "icons/tabler/player-pause-filled.svg")
+         (rc/inline "icons/tabler/player-play-filled.svg"))]]]]])
+
 (defn component-main [state]
   [:<>
    [component-header]

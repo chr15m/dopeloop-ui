@@ -88,7 +88,7 @@ dope-menu label {
   cursor: pointer;
 }
 
-dope-menu ul {
+dope-menu input + label + * {
   display: flex;
   list-style-type: none;
   border-radius: var(--radius);
@@ -96,8 +96,31 @@ dope-menu ul {
   gap: 1em;
 }
 
+dope-menu label dope-icon {
+  font-size: 1.25em;
+}
+
+dope-menu ul {
+  padding: 0px;
+  margin: 0px;
+}
+
 dope-menu ul li {
   text-shadow: 0px 0px 2px black;
+  display: flex;
+  margin: 0.5em 0px;
+}
+
+dope-menu ul li dope-icon {
+  margin-right: 0.5em;
+}
+
+dope-menu ul li dope-icon svg {
+  stroke: var(--color-2-highlight);
+}
+
+dope-menu ul li a {
+  display: flex;
 }
 
 dope-menu input[type="checkbox"] {
@@ -120,26 +143,43 @@ dope-menu input:checked ~ label dope-icon:nth-child(2) {
   display: flex;
 }
 
-dope-menu ul {
+dope-menu input + label + * {
   display: none;
 }
 
-dope-menu input:checked ~ ul {
+dope-menu input:checked + label + * {
   display: flex;
 }
 
-dope-menu ul {
+dope-menu input + label + * {
   position: absolute;
   margin-top: 0.5em;
-  padding: 2em 0px;
+  padding: 1em 1em;
   left: calc(100% - 15em);
   right: 0.5em;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   background-color: var(--color-semitransparent);
   z-index: 10;
   box-shadow: 0px 0px 5px -2px var(--color-1);
+  gap: 0.5em;
+}
+
+dope-menu h1, dope-menu h2, dope-menu h3, dope-menu h4 {
+  margin: 0.25em 0px;
+}
+
+dope-menu p {
+  margin: 0px;
+}
+
+dope-menu li strong {
+  margin-right: 0.25em;
+}
+
+dope-menu .note {
+  text-align: right;
 }
 
 main {
