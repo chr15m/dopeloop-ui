@@ -48,82 +48,94 @@
          (rc/inline "icons/tabler/player-pause-filled.svg")
          (rc/inline "icons/tabler/player-play-filled.svg"))]]]]])
 
+(defn component-buttons-demo []
+  [:<>
+   [:h2 "Buttons"]
+   [:dope-card
+    [:dope-row
+     [:button "First"]
+     [:button "One two"]
+     [:button "Hello"]]]
+   [:dope-card.alt
+    [:dope-row.right
+     [:button "This"]]]
+   [:dope-card
+    [:dope-row
+     [:button {:data-notification-text "Longer notification. Yes!"
+               :on-click #(button-notify (-> % .-target))}
+      "Notify"]
+     [:button {:data-notification-text "Notify!"
+               :on-click #(button-notify (-> % .-target))}
+      "Notify 2"]]]
+   [:dope-card.alt
+    [:dope-row
+     [:dope-group
+      [:button.square
+       [icon (rc/inline "icons/tabler/headphones-filled.svg")]]
+      [:button.round
+       [icon (rc/inline "icons/tabler/check.svg")]]]
+     [:dope-group
+      [:button.round.large
+       [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]]])
+
+(defn component-inputs-demo []
+  [:<>
+   [:h2 "Inputs"]
+   [:dope-card
+    [:dope-row
+     [:input {:placeholder "Hi"}]
+     [:dope-group
+      [:select
+       [:option "First"]
+       [:option "Second"]
+       [:option "Third"]]
+      [:button
+       [icon (rc/inline "icons/tabler/trash.svg")]
+       "Trash"]]]]
+   [:h2 "Sliders"]
+   [:dope-card
+    [:dope-row
+     (let [v (r/cursor state [:sliders :thing])]
+       [component-slider "thing" @v 0 127
+        {:on-change #(reset! v (ev-val %))}])
+     (let [v (r/cursor state [:sliders :whatsit])]
+       [component-slider "whatsit" @v 0 127
+        {:on-change #(reset! v (ev-val %))}])]]])
+
+(defn component-audio-widgets-demo []
+  [:<>
+   [:h2 "Grid"]
+   [:dope-card.alt
+    [:dope-row.title "Drums"]
+    [:dope-row [component-demo-grid state]]]
+   [:h2 "Audio parameter widgets"]
+   [:dope-card
+    [:dope-row.center-bias
+     [component-envelope]
+     [:span
+      (doall
+        (for [i (range 4)]
+          ^{:key i} [component-dial]))]]]
+   [:dope-card.alt
+    [:dope-row.center-bias
+     [component-envelope]
+     [:span
+      (doall
+        (for [i (range 4)]
+          ^{:key i} [component-dial]))]]]
+   [:h2 "Wave"]
+   [:dope-card
+    [component-waveform state [:waveform] (:wave-file @state)]]])
+
 (defn component-main [state]
   [:<>
    [component-header]
    [:main
     [:h1.fat {:title "Design reference"} "Design reference"]
     [:section.ui
-     [:h2 "Buttons"]
-     [:dope-card
-      [:dope-row
-       [:button "First"]
-       [:button "One two"]
-       [:button "Hello"]]]
-     [:dope-card.alt
-      [:dope-row.right
-       [:button "This"]]]
-     [:dope-card
-      [:dope-row
-       [:button {:data-notification-text "Longer notification. Yes!"
-                 :on-click #(button-notify (-> % .-target))}
-        "Notify"]
-       [:button {:data-notification-text "Notify!"
-                 :on-click #(button-notify (-> % .-target))}
-        "Notify 2"]]]
-     [:dope-card.alt
-      [:dope-row
-       [:dope-group
-        [:button.square
-         [icon (rc/inline "icons/tabler/headphones-filled.svg")]]
-        [:button.round
-         [icon (rc/inline "icons/tabler/check.svg")]]]
-       [:dope-group
-        [:button.round.large
-         [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]]
-     [:h2 "Inputs"]
-     [:dope-card
-      [:dope-row
-       [:input {:placeholder "Hi"}]
-       [:dope-group
-        [:select
-         [:option "First"]
-         [:option "Second"]
-         [:option "Third"]]
-        [:button
-         [icon (rc/inline "icons/tabler/trash.svg")]
-         "Trash"]]]]
-     [:h2 "Sliders"]
-     [:dope-card
-      [:dope-row
-       (let [v (r/cursor state [:sliders :thing])]
-         [component-slider "thing" @v 0 127
-          {:on-change #(reset! v (ev-val %))}])
-       (let [v (r/cursor state [:sliders :whatsit])]
-         [component-slider "whatsit" @v 0 127
-          {:on-change #(reset! v (ev-val %))}])]]
-     [:h2 "Grid"]
-     [:dope-card.alt
-      [:dope-row.title "Drums"]
-      [:dope-row [component-demo-grid state]]]
-     [:h2 "Audio parameter widgets"]
-     [:dope-card
-      [:dope-row.center-bias
-       [component-envelope]
-       [:span
-        (doall
-          (for [i (range 4)]
-            ^{:key i} [component-dial]))]]]
-     [:dope-card.alt
-      [:dope-row.center-bias
-       [component-envelope]
-       [:span
-        (doall
-          (for [i (range 4)]
-            ^{:key i} [component-dial]))]]]
-     [:h2 "Wave"]
-     [:dope-card
-      [component-waveform state [:waveform] (:wave-file @state)]]]
+     [component-buttons-demo]
+     [component-inputs-demo]
+     [component-audio-widgets-demo]]
     ; TODO: BPM component
     [:section.typography
      [:h2 "Typography"]
