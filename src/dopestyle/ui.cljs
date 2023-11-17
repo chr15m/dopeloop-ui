@@ -115,8 +115,9 @@
       [:summary "Unfold for more info."]
       (for [p (range 100)]
         [:p {:key p}
-         (for [s (range (int (inc (* (js/Math.random) 10))))]
-           [:span {:key s} "Ipsum lorem something. "])])]]]
+         (for [s (range (int (inc (mod (+ (* p 33) 5381) 10))))]
+           [:span {:key s} "Ipsum lorem something. "])])]]
+    [component-demo-action-bar state]]
    [component-footer]])
 
 (defn start {:dev/after-load true} []
