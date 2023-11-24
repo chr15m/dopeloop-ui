@@ -203,7 +203,7 @@
     [:dope-menu
      [:input {:type "checkbox" :id "nav-menu-dropdown"}]
      [:label {:for "nav-menu-dropdown"}
-      [icon (rc/inline "icons/tabler/menu.svg")]
+      [icon (rc/inline "icons/tabler/menu-2.svg")]
       [icon (rc/inline "icons/tabler/x.svg")]]
      [:dope-menu-inner
       [:ul

@@ -180,6 +180,12 @@ dope-menu li strong {
 
 dope-menu .note {
   text-align: right;
+  width: 100%;
+  color: var(--color-1-shadow);
+}
+
+dope-menu .note * {
+  color: var(--color-1-shadow);
 }
 
 main {
