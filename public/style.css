@@ -638,6 +638,11 @@ table.grid td:nth-child(4n+1) {
     padding: 0.25em;
   }
 
+  section.ui {
+    margin: 0px 0px;
+    margin-bottom: 4em;
+  }
+
   header h2 {
     display: none;
   }
