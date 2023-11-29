@@ -74,12 +74,15 @@
                  :data modal-data})
   (hide-menu!))
 
-(defn handle-root-click! [ev]
-  (let [menu-modal (.querySelector js/document "nav dope-menu")
-        menu-button (.querySelector js/document "#nav-menu-dropdown")]
-    (when (and (aget menu-button "checked")
-               (not (.contains menu-modal (aget ev "target"))))
-      (hide-menu!))))
+(defn handle-root-click!
+  "Closes the nav menu on root click. Use:
+  `(.addEventListener js/document \"click\" handle-root-click!)`"
+  [ev]
+  (when-let [menu-button (.querySelector js/document "#nav-menu-dropdown")]
+    (let [menu-modal (.querySelector js/document "nav dope-menu")]
+      (when (and (aget menu-button "checked")
+                 (not (.contains menu-modal (aget ev "target"))))
+        (hide-menu!)))))
 
 ; *** components *** ;
 
