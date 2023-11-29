@@ -62,6 +62,25 @@
          (set-tempo-throttled state))
     new-tempo))
 
+(defn hide-menu! []
+  (->
+    (.querySelector js/document "#nav-menu-dropdown")
+    (aset "checked" false)))
+
+(defn show-modal! [ev state component & [modal-data]]
+  (when ev (.preventDefault ev))
+  (swap! state assoc
+         :modal {:component component
+                 :data modal-data})
+  (hide-menu!))
+
+(defn handle-root-click! [ev]
+  (let [menu-modal (.querySelector js/document "nav dope-menu")
+        menu-button (.querySelector js/document "#nav-menu-dropdown")]
+    (when (and (aget menu-button "checked")
+               (not (.contains menu-modal (aget ev "target"))))
+      (hide-menu!))))
+
 ; *** components *** ;
 
 (defn component-tempo [state lookup]
@@ -191,7 +210,40 @@
          :value value}
         props)]]))
 
-(defn component-header []
+(defn component-close-modal [state]
+  [:header
+   [:dope-group]
+   [:dope-group
+    [:a.sign-in {:href "/auth/sign-in"
+                 :target "_BLANK"}
+     [:button.button.primary
+      [icon (rc/inline "icons/tabler/user.svg")]
+      "Sign in"]]
+    [:div.close-modal
+     {:on-click #(swap! state dissoc :modal)}
+     [icon (rc/inline "icons/tabler/x.svg")]]]])
+
+(defn component-modal [state]
+  (when (:modal @state)
+    [:dope-modal
+     [component-close-modal state]
+     [:section
+      [(-> @state :modal :component) state (-> @state :modal :data)]]
+     [:section]]))
+
+(defn component-example-modal [state modal-data]
+  [:main
+   [:pre "Modal data: " (pr-str modal-data)]
+   (for [p (range (int (* (js/Math.random) 15)))]
+          [:p {:key p}
+           (for [s (range (int (inc (mod (+ (* p 33) 5381) 10))))]
+             [:span {:key s} "Ipsum lorem something. "])])
+   [:dope-row.right
+    [:button {:class "full"
+              :on-click #(swap! state dissoc :modal)}
+     [icon (rc/inline "icons/tabler/check.svg")] "done"]]])
+
+(defn component-header [state]
   [:header
    [:a {:href "https://dopeloop.ai"}
     [inline-img (rc/inline "style/img/logo.svg") {:class "logo"}]
@@ -218,7 +270,13 @@
        [:li
         [:a {:href "https://dopeloop.ai"}
          [icon (rc/inline "icons/tabler/horse.svg")]
-         "Neigh"]]]
+         "Neigh"]]
+       [:li
+        [:a {:href "#"
+             :on-click #(show-modal! % state component-example-modal
+                                     {:hello 42})}
+         [icon (rc/inline "icons/tabler/info-circle.svg")]
+         "About"]]]
       [:h3 "Stats"]
       [:ul
        [:li [:p [:strong "23"] "days"]]

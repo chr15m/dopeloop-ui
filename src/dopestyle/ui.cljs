@@ -3,10 +3,12 @@
     [reagent.core :as r]
     [shadow.resource :as rc]
     [reagent.dom :as rdom]
-    [dopestyle.core :refer [component-header component-slider
-                            component-envelope component-dial
-                            component-waveform component-footer
-                            set-nx-colors! ev-val button-notify icon]]))
+    [dopestyle.core :refer [component-header component-modal
+                            component-slider component-envelope
+                            component-dial component-waveform
+                            component-footer
+                            set-nx-colors! ev-val button-notify icon
+                            handle-root-click!]]))
 
 (defonce state
   (r/atom
@@ -128,25 +130,27 @@
     [component-waveform state [:waveform] (:wave-file @state)]]])
 
 (defn component-main [state]
-  [:<>
-   [component-header]
-   [:main
-    [:h1.fat {:title "Design reference"} "Design reference"]
-    [:section.ui
-     [component-buttons-demo]
-     [component-inputs-demo]
-     [component-audio-widgets-demo]]
-    ; TODO: BPM component
-    [:section.typography
-     [:h2 "Typography"]
-     [:details
-      [:summary "Unfold for more info."]
-      (for [p (range 100)]
-        [:p {:key p}
-         (for [s (range (int (inc (mod (+ (* p 33) 5381) 10))))]
-           [:span {:key s} "Ipsum lorem something. "])])]]
-    [component-demo-action-bar state]]
-   [component-footer]])
+  (if (:modal @state)
+    [component-modal state]
+    [:<>
+     [component-header state]
+     [:main
+      [:h1.fat {:title "Design reference"} "Design reference"]
+      [:section.ui
+       [component-buttons-demo]
+       [component-inputs-demo]
+       [component-audio-widgets-demo]]
+      ; TODO: BPM component
+      [:section.typography
+       [:h2 "Typography"]
+       [:details
+        [:summary "Unfold for more info."]
+        (for [p (range 100)]
+          [:p {:key p}
+           (for [s (range (int (inc (mod (+ (* p 33) 5381) 10))))]
+             [:span {:key s} "Ipsum lorem something. "])])]]
+      [component-demo-action-bar state]]
+     [component-footer]]))
 
 (defn start {:dev/after-load true} []
   (let [app (js/document.getElementById "app")]
@@ -154,6 +158,8 @@
     (rdom/render [component-main state] app)))
 
 (defn init []
+  ; listen for clicks on document root
+  (.addEventListener js/document "click" handle-root-click!)
   (let [updater
         (fn updater []
           (swap! state update-in [:grid-highlight] #(-> % inc (mod 16)))

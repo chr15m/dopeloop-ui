@@ -34,7 +34,7 @@ html {
 
 /*** basic layout ***/
 
-html, body, #app {
+html, body, #app, dope-modal {
   height: 100%;
   width: 100%;
   display: flex;
@@ -186,6 +186,21 @@ dope-menu .note {
 
 dope-menu .note * {
   color: var(--color-1-shadow);
+}
+
+dope-modal {
+  position: fixed;
+  background-image: url("style/img/stardust.png");
+  z-index: 20;
+  overflow-y: scroll;
+}
+
+dope-modal .close-modal dope-icon {
+  font-size: 1.25em;
+}
+
+dope-modal main {
+  margin: 2em;
 }
 
 main {
