@@ -273,7 +273,7 @@
          "Neigh"]]
        [:li
         [:a {:href "#"
-             :on-click #(show-modal! % state component-example-modal
+             :on-click #(show-modal! % state #'component-example-modal
                                      {:hello 42})}
          [icon (rc/inline "icons/tabler/info-circle.svg")]
          "About"]]]
