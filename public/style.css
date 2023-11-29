@@ -437,9 +437,9 @@ button.multistate.on.half {
   background: repeating-linear-gradient(
     -45deg,
     var(--color-2),
-    var(--color-2) 10px,
-    var(--color-4) 10px,
-    var(--color-4) 20px
+    var(--color-2) 4px,
+    var(--color-4) 4px,
+    var(--color-4) 6px
   );
 }
 
@@ -447,9 +447,9 @@ button.multistate.highlight.half {
   background: repeating-linear-gradient(
     -45deg,
     var(--color-2-highlight),
-    var(--color-2-highlight) 10px,
-    var(--color-4) 10px,
-    var(--color-4) 20px
+    var(--color-2-highlight) 4px,
+    var(--color-4) 4px,
+    var(--color-4) 6px
   );
 }
 
