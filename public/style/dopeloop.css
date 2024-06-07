@@ -322,7 +322,7 @@ dope-split-button ul {
   position: absolute;
   bottom: 2em;
   right: 0px;
-  padding: 1em;
+  padding: 1em 0.5em;
   background-color: var(--color-2);
   border-radius: var(--radius);
   box-shadow: var(--pop-shadow);
@@ -333,6 +333,18 @@ dope-split-button ul {
 
 dope-split-button input[type="checkbox"]:checked ~ ul {
   display: inline-block;
+}
+
+dope-split-button ul li {
+  margin-left: 0.5em;
+}
+
+dope-split-button ul li span {
+  font-size: 0.75em;
+}
+
+dope-split-button ul li + li {
+  margin-top: 1em;
 }
 
 /*** basic brand styles ***/
