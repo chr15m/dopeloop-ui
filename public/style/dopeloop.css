@@ -1,6 +1,6 @@
 /*** dopeloop style ***/
 
-@import url("style/fonts/fonts.css");
+@import url("fonts/fonts.css");
 
 :root {
   --color-bg: #444349;
@@ -29,7 +29,7 @@ h1, h2, h3 {
 }
 
 html {
-  background-image: url("style/img/stardust.png");
+  background-image: url("img/stardust.png");
 }
 
 /*** basic layout ***/
