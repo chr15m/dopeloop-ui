@@ -298,6 +298,26 @@ dope-group {
   gap: 0.25em;
 }
 
+dope-split-button {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1px;
+  position: relative;
+}
+
+dope-split-button ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  bottom: 2em;
+  right: 0px;
+  padding: 1em;
+  background-color: var(--color-2);
+  border-radius: var(--radius);
+}
+
 /*** basic brand styles ***/
 
 a:hover {
