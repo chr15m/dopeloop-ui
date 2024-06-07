@@ -299,54 +299,6 @@ dope-group {
   gap: 0.25em;
 }
 
-dope-split-button {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1px;
-  position: relative;
-}
-
-/* see style above from button */
-
-dope-split-button label {}
-
-dope-split-button > input[type="checkbox"] {
-  display: none;
-}
-
-dope-split-button ul {
-  list-style-type: none;
-  margin: 0px;
-  padding: 0px;
-  position: absolute;
-  bottom: 2em;
-  right: 0px;
-  padding: 1em 0.5em;
-  background-color: var(--color-2);
-  border-radius: var(--radius);
-  box-shadow: var(--pop-shadow);
-  border: 1px solid var(--color-1-shadow);
-  z-index: 100;
-  display: none;
-}
-
-dope-split-button input[type="checkbox"]:checked ~ ul {
-  display: inline-block;
-}
-
-dope-split-button ul li {
-  margin-left: 0.5em;
-}
-
-dope-split-button ul li span {
-  font-size: 0.75em;
-}
-
-dope-split-button ul li + li {
-  margin-top: 1em;
-}
-
 /*** basic brand styles ***/
 
 a:hover {
@@ -628,6 +580,57 @@ dope-tempo input {
   width: 6.5ch;
   padding: 0.25em;
   font-weight: bold;
+}
+
+
+dope-split-button {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1px;
+  position: relative;
+}
+
+/* see style above from button */
+
+dope-split-button > label {
+  padding: 0.25em 0.5em;
+}
+
+dope-split-button > input[type="checkbox"] {
+  display: none;
+}
+
+dope-split-button ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  bottom: 2em;
+  right: 0px;
+  padding: 1em 0.5em;
+  background-color: var(--color-2);
+  border-radius: var(--radius);
+  box-shadow: var(--pop-shadow);
+  border: 1px solid var(--color-1-shadow);
+  z-index: 100;
+  display: none;
+}
+
+dope-split-button input[type="checkbox"]:checked ~ ul {
+  display: inline-block;
+}
+
+dope-split-button ul li {
+  margin-left: 0.5em;
+}
+
+dope-split-button ul li span {
+  font-size: 0.75em;
+}
+
+dope-split-button ul li + li {
+  margin-top: 1em;
 }
 
 /* nexus stuff */
