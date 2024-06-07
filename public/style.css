@@ -197,6 +197,7 @@ dope-modal {
 
 dope-modal .close-modal dope-icon {
   font-size: 1.25em;
+  cursor: pointer;
 }
 
 dope-modal main {
