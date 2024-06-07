@@ -16,6 +16,7 @@
   --color-3-shadow: #947B39;
   --color-4: #888;
   --radius: 4px;
+  --pop-shadow: 0px 0px 5px -2px var(--color-1);
 }
 
 * {
@@ -162,7 +163,7 @@ dope-menu input + label + * {
   align-items: start;
   background-color: var(--color-semitransparent);
   z-index: 10;
-  box-shadow: 0px 0px 5px -2px var(--color-1);
+  box-shadow: var(--pop-shadow);
   gap: 0.5em;
 }
 
@@ -306,6 +307,14 @@ dope-split-button {
   position: relative;
 }
 
+/* see style above from button */
+
+dope-split-button label {}
+
+dope-split-button > input[type="checkbox"] {
+  display: none;
+}
+
 dope-split-button ul {
   list-style-type: none;
   margin: 0px;
@@ -316,6 +325,14 @@ dope-split-button ul {
   padding: 1em;
   background-color: var(--color-2);
   border-radius: var(--radius);
+  box-shadow: var(--pop-shadow);
+  border: 1px solid var(--color-1-shadow);
+  z-index: 100;
+  display: none;
+}
+
+dope-split-button input[type="checkbox"]:checked ~ ul {
+  display: inline-block;
 }
 
 /*** basic brand styles ***/
@@ -369,7 +386,7 @@ select {
   padding-right: 1.75em;
 }
 
-button {
+button, dope-split-button > label {
   margin: 0px;
   border: none;
   color: var(--color-1);
