@@ -16,6 +16,7 @@
   --color-3-shadow: #947B39;
   --color-4: #888;
   --radius: 4px;
+  --radius-2: 6px;
   --pop-shadow: 0px 0px 5px -2px var(--color-1);
 }
 
@@ -518,6 +519,24 @@ dope-icon .large svg {
   height: 2em;
 }
 
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid var(--color-1);
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--color-2);
+}
+
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -526,7 +545,7 @@ input[type="range"] {
   background-color: transparent;
   border: 2px solid var(--color-1);
   margin: 0px;
-  border-radius: 6px;
+  border-radius: var(--radius-2);
   cursor: pointer;
 }
 
