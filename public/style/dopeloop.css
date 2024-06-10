@@ -530,10 +530,11 @@ input[type="checkbox"] {
   display: inline-block;
   width: 1.25em;
   height: 1.25em;
-  border: 2px solid var(--color-1);
+  border: 2px solid var(--color-1-shadow);
 }
 
 input[type="checkbox"]:checked {
+  border: 2px solid var(--color-1);
   background-color: var(--color-2);
 }
 
