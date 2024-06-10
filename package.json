@@ -10,5 +10,9 @@
     "react-icons": "^4.11.0",
     "shadow-cljs": "^2.16.12",
     "wavesurfer.js": "^7.3.2"
+  },
+  "devDependencies": {
+    "nbb": "^1.2.188",
+    "playwright": "^1.44.1"
   }
 }
