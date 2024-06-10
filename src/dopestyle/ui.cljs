@@ -94,6 +94,9 @@
       [:button
        [icon (rc/inline "icons/tabler/trash.svg")]
        "Trash"]]]]
+   [:dope-card
+    [:dope-row
+     [:label [:input {:type "checkbox"}] "On or off?"]]]
    [:h2 "Sliders"]
    [:dope-card
     [:dope-row
