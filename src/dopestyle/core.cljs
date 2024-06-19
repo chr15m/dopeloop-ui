@@ -47,10 +47,16 @@
                             {:__html svg}}
                            attrs)])
 
+(defn download-file-link [file & callback]
+  [:a {:href (.createObjectURL js/URL file)
+       :download (aget file "name")
+       :on-click #(when callback (callback file %))
+       :on-contextmenu #(when callback (callback file %))}])
+
 (defn update-val! [state coords ev]
   (swap! state update-in coords (-> ev .-target .-value)))
 
-(def tempo-range [30 210])
+(def tempo-range [30 250])
 
 (defn clamp-tempo [t]
   (-> t int (min (second tempo-range)) (max (first tempo-range))))
@@ -93,9 +99,9 @@
         update-fn #(let [v (-> @tmp-tempo clamp-tempo)]
                      (reset! tmp-tempo (set-tempo state lookup v)))
         update-up-fn
-        #(reset! tmp-tempo (set-tempo state lookup (+ @tmp-tempo 10)))
+        #(reset! tmp-tempo (set-tempo state lookup (clamp-tempo (+ @tmp-tempo 10))))
         update-dn-fn
-        #(reset! tmp-tempo (set-tempo state lookup (- @tmp-tempo 10)))]
+        #(reset! tmp-tempo (set-tempo state lookup (clamp-tempo (- @tmp-tempo 10))))]
     (fn []
       [:dope-tempo {:data-tempo (get-in @state lookup)}
         [:button.round
