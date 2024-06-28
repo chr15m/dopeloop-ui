@@ -3,7 +3,8 @@
     [shadow.resource :as rc]
     [reagent.core :as r]
     ["nexusui" :as nx]
-    ["wavesurfer.js" :as ws]))
+    ["wavesurfer.js" :as ws]
+    [dopestyle.util :refer [icon inline-img]]))
 
 (defn year [] (-> (js/Date.) .getFullYear .toString))
 
@@ -29,23 +30,11 @@
 
 (defn ev-val [ev] (-> ev .-target .-value))
 
-(def re-html-comment (js/RegExp. "<\\!--.*?-->" "g"))
-
 (defn set-nx-colors! [app]
   (let [style (js/getComputedStyle app)] 
     ; set nexus ui colors
     (aset nx "colors" "accent" (.getPropertyValue style "--color-1"))
     (aset nx "colors" "fill" (.getPropertyValue style "--color-1-trans"))))
-
-(defn icon [svg attrs]
-  [:dope-icon (merge {:dangerouslySetInnerHTML
-                      {:__html (.replace svg re-html-comment "")}}
-                     attrs)])
-
-(defn inline-img [svg attrs]
-  [:dope-inline-svg (merge {:dangerouslySetInnerHTML
-                            {:__html svg}}
-                           attrs)])
 
 (defn download-file-link [file & callback]
   [:a {:href (.createObjectURL js/URL file)
