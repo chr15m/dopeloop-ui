@@ -36,7 +36,7 @@ html {
 
 /*** basic layout ***/
 
-html, body, #app, dope-modal {
+html, body, #app, dope-modal, #page {
   height: 100%;
   width: 100%;
   display: flex;
@@ -83,7 +83,11 @@ header .logo svg {
   max-height: 2em;
 }
 
+/*** menu ***/
+
 nav {
+  display: flex;
+  gap: 1em;
 }
 
 dope-menu label {
@@ -190,6 +194,8 @@ dope-menu .note * {
   color: var(--color-1-shadow);
 }
 
+/*** modal ***/
+
 dope-modal {
   position: fixed;
   background-image: url("style/img/stardust.png");
@@ -223,6 +229,7 @@ section.action-bar {
   padding: 0.5em 0.25em;
   z-index: 10;
   background-color: var(--color-semitransparent);
+  border-top: var(--color-1-trans);
 }
 
 footer {
