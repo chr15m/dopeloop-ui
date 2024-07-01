@@ -30,6 +30,10 @@ h1, h2, h3 {
   font-family: "Hemi Head";
 }
 
+li + li {
+  margin-top: 0.25em;
+}
+
 html {
   background-image: url("img/stardust.png");
 }
