@@ -262,6 +262,10 @@ dope-row.center {
   justify-content: space-around;
 }
 
+dope-row.scroll {
+  overflow: auto;
+}
+
 dope-row + dope-row {
   margin-top: 0.5em;
 }
@@ -424,6 +428,7 @@ button[data-notification-text].notify::before {
 
 button.multistate {
   width: 100%;
+  min-width: 32px;
   height: 48px;
   padding: 0px;
   border: 0px;
@@ -533,7 +538,7 @@ dope-icon .large svg {
 input[type="checkbox"] {
   appearance: none;
   cursor: pointer;
-  color: white;
+  color: var(--color-1);
   background: rgba(0,0,0,0.25);
   width: 1.25em;
   height: 1.25em;
@@ -715,12 +720,12 @@ dope-split-button ul li label > * + * {
 
 /* drum grid */
 
-table.grid {
+dope-row.grid table {
   margin: auto;
   width: 100%;
 }
 
-table.grid th {
+dope-row.grid table th {
   width: 0px;
   text-align: right;
   font-weight: normal;
@@ -728,13 +733,33 @@ table.grid th {
   padding-right: 0.25em;
 }
 
-table.grid td {
+dope-row.grid table td {
   width: 48px;
+  background-color: transparent;
 }
 
-table.grid td:nth-child(4n+1) {
+dope-row.grid table td:nth-child(4n+1) {
   width: 52px;
   padding-right: 4px;
+}
+
+dope-row.grid table .sticky {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  position: sticky;
+  left: 0px;
+  z-index: 2;
+  background-color: var(--color-bg-2);
+
+}
+
+dope-row.grid + dope-row.bars button.highlight {
+  border: 2px solid var(--color-1);
+}
+
+dope-row.grid.compact table td:nth-child(8n+2).current-bar {
+  background-color: var(--color-1);
+  border-radius: 2px;
 }
 
 /*** device specific ***/
@@ -782,8 +807,8 @@ table.grid td:nth-child(4n+1) {
   height: 48px;
   border-radius: 24px;
   border: 3px solid transparent;
-  border-left: 3px solid silver;
-  border-right: 3px solid silver;
+  border-left: 3px solid var(--color-1);
+  border-right: 3px solid var(--color-1);
 }
 
 .spin {
