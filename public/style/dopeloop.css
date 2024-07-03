@@ -40,7 +40,7 @@ html {
 
 /*** basic layout ***/
 
-html, body, #app, dope-modal, #page {
+html, body, #app, dope-modal, dope-dialog, #page {
   height: 100%;
   width: 100%;
   display: flex;
@@ -202,7 +202,7 @@ dope-menu .note * {
 
 dope-modal {
   position: fixed;
-  background-image: url("style/img/stardust.png");
+  background-image: url("img/stardust.png");
   z-index: 20;
   overflow-y: scroll;
 }
@@ -215,6 +215,28 @@ dope-modal .close-modal dope-icon {
 dope-modal main {
   margin: 2em;
 }
+
+dope-dialog {
+  position: fixed;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-2);
+}
+
+dope-dialog > div {
+  background-color: var(--color-bg);
+  margin: 2em;
+  box-shadow: var(--pop-shadow);
+  width: 800px;
+  max-width: 100%;
+  padding: 2em;
+  border: 2px solid var(--color-1-shadow);
+  border-radius: var(--radius);
+}
+
+/*** sections ***/
 
 main {
   width: 800px;
