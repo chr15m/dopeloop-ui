@@ -743,6 +743,11 @@ dope-row.grid table td:nth-child(4n+1) {
   padding-right: 4px;
 }
 
+dope-row.grid table th {
+  text-wrap: nowrap;
+  cursor: pointer;
+}
+
 dope-row.grid table .sticky {
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -750,7 +755,7 @@ dope-row.grid table .sticky {
   left: 0px;
   z-index: 2;
   background-color: var(--color-bg-2);
-
+  border-radius: var(--radius);
 }
 
 dope-row.grid + dope-row.bars button.highlight {
