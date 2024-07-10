@@ -225,11 +225,17 @@ dope-dialog {
   background-color: var(--color-bg-2);
 }
 
+dope-dialog dope-icon.close {
+  float: right;
+  margin-top: -1em;
+  margin-right: -1em;
+}
+
 dope-dialog > div {
   background-color: var(--color-bg);
   margin: 2em;
   box-shadow: var(--pop-shadow);
-  width: 800px;
+  width: 720px;
   max-width: 100%;
   padding: 2em;
   border: 2px solid var(--color-1-shadow);
@@ -543,6 +549,15 @@ dope-icon svg {
   justify-content: center;
 }
 
+dope-icon.close {
+  display: pointer;
+}
+
+dope-icon.close > svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
 button dope-icon svg {
 }
 
@@ -816,6 +831,16 @@ dope-row.grid.compact table td:nth-child(8n+2).current-bar {
 
   .wave dope-row {
     opacity: 1;
+  }
+
+  dope-dialog > div {
+    padding: 0.5em;
+  }
+
+  dope-dialog dope-icon.close {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: -2em;
   }
 }
 
