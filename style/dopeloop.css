@@ -1,0 +1,895 @@
+/*** dopeloop style ***/
+
+@import url("fonts/fonts.css");
+
+:root {
+  --color-bg: #444349;
+  --color-bg-2: rgba(0, 0, 0, 0.25);
+  --color-semitransparent: rgba(68, 67, 73, 0.9);
+  --color-1: #F7F1ED;
+  --color-1-shadow: #97928e;
+  --color-1-trans: rgba(247, 241, 237, 0.1);
+  --color-2: #C83737;
+  --color-2-shadow: #972A2A;
+  --color-2-highlight: #EB5252;
+  --color-3: #e7ad1b;
+  --color-3-shadow: #947B39;
+  --color-4: #888;
+  --radius: 4px;
+  --radius-2: 6px;
+  --pop-shadow: 0px 0px 5px -2px var(--color-1);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Courier Prime", monospace;
+  color: var(--color-1);
+}
+
+h1, h2, h3 {
+  font-family: "Hemi Head";
+}
+
+li + li {
+  margin-top: 0.25em;
+}
+
+html {
+  background-image: url("img/stardust.png");
+}
+
+/*** basic layout ***/
+
+html, body, #app, dope-modal, dope-dialog, #page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  max-width: 100%;
+  margin: auto;
+}
+
+header {
+  width: 100%;
+  padding: 0.5em 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header > * {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+header h2 {
+  margin: 0px;
+  padding: 0px;
+}
+
+header a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header .logo svg {
+  max-width: 2em;
+  max-height: 2em;
+}
+
+/*** menu ***/
+
+nav {
+  display: flex;
+  gap: 1em;
+}
+
+dope-menu label {
+  cursor: pointer;
+}
+
+dope-menu input + label + * {
+  display: flex;
+  list-style-type: none;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-1-shadow);
+  gap: 1em;
+}
+
+dope-menu label dope-icon {
+  font-size: 1.25em;
+}
+
+dope-menu ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+dope-menu ul li {
+  text-shadow: 0px 0px 2px black;
+  display: flex;
+  margin: 0.5em 0px;
+}
+
+dope-menu ul li dope-icon {
+  margin-right: 0.5em;
+}
+
+dope-menu ul li dope-icon svg {
+  stroke: var(--color-2-highlight);
+}
+
+dope-menu ul li a {
+  display: flex;
+}
+
+dope-menu input[type="checkbox"] {
+  display: none;
+}
+
+dope-menu input ~ label dope-icon:nth-child(1) {
+  display: flex;
+}
+
+dope-menu input ~ label dope-icon:nth-child(2) {
+  display: none;
+}
+
+dope-menu input:checked ~ label dope-icon:nth-child(1) {
+  display: none;
+}
+
+dope-menu input:checked ~ label dope-icon:nth-child(2) {
+  display: flex;
+}
+
+dope-menu input + label + * {
+  display: none;
+}
+
+dope-menu input:checked + label + * {
+  display: flex;
+}
+
+dope-menu input + label + * {
+  position: absolute;
+  margin-top: 0.5em;
+  padding: 1em 1em;
+  left: calc(100% - 15em);
+  right: 0.5em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: var(--color-semitransparent);
+  z-index: 10;
+  box-shadow: var(--pop-shadow);
+  gap: 0.5em;
+}
+
+dope-menu h1, dope-menu h2, dope-menu h3, dope-menu h4 {
+  margin: 0.25em 0px;
+}
+
+dope-menu p {
+  margin: 0px;
+}
+
+dope-menu li strong {
+  margin-right: 0.25em;
+}
+
+dope-menu .note {
+  text-align: right;
+  width: 100%;
+  color: var(--color-1-shadow);
+}
+
+dope-menu .note * {
+  color: var(--color-1-shadow);
+}
+
+/*** modal ***/
+
+dope-modal {
+  position: fixed;
+  background-image: url("img/stardust.png");
+  z-index: 20;
+  overflow-y: scroll;
+}
+
+dope-modal .close-modal dope-icon {
+  font-size: 1.25em;
+  cursor: pointer;
+}
+
+dope-modal main {
+  margin: 2em;
+}
+
+dope-dialog {
+  position: fixed;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-2);
+}
+
+dope-dialog dope-icon.close {
+  float: right;
+  margin-top: -1em;
+  margin-right: -1em;
+}
+
+dope-dialog > div {
+  background-color: var(--color-bg);
+  margin: 2em;
+  box-shadow: var(--pop-shadow);
+  width: 720px;
+  max-width: 100%;
+  padding: 2em;
+  border: 2px solid var(--color-1-shadow);
+  border-radius: var(--radius);
+}
+
+/*** sections ***/
+
+main {
+  width: 800px;
+  max-width: 100%;
+}
+
+section.ui {
+  margin: 1.5em 0px;
+}
+
+section.action-bar {
+  position: fixed;
+  bottom: 0px;
+  width: 800px;
+  max-width: calc(100% - 0.5em);
+  padding: 0.5em 0.25em;
+  z-index: 10;
+  background-color: var(--color-semitransparent);
+  border-top: var(--color-1-trans);
+}
+
+footer {
+  font-size: 0.75em;
+  padding: 2em 0.25em;
+}
+
+dope-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25em;
+}
+
+dope-row.right > :only-child {
+  margin-left: auto;
+}
+
+dope-row.left {
+  justify-content: start;
+}
+
+dope-row.center {
+  justify-content: space-around;
+}
+
+dope-row.scroll {
+  overflow: auto;
+}
+
+dope-row + dope-row {
+  margin-top: 0.5em;
+}
+
+dope-row > details {
+  width: 100%;
+}
+
+dope-row > details > summary {
+  display: inline-flex;
+  width: 100%;
+  align-items: first baseline;
+}
+
+dope-row > details > summary::before {
+  content: "▶";
+  margin-right: 0.25em;
+}
+
+dope-row > details[open] > summary::before {
+  content: "▼";
+}
+
+dope-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  padding: 0.25em 0.5em;
+}
+
+dope-card.alt {
+  background-color: var(--color-bg-2);
+}
+
+dope-card + dope-card, dope-card + dope-row, dope-row + dope-card {
+  margin-top: 0.5em;
+}
+
+dope-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25em;
+}
+
+dope-row.right > :last-child {
+  margin-left: auto;
+}
+
+/*** basic brand styles ***/
+
+a:hover {
+  color: var(--color-2-highlight);
+}
+
+summary {
+  cursor: pointer;
+}
+
+.fat {
+  color: var(--color-bg);
+  position: relative;
+  z-index: 0;
+}
+
+/* add a single stroke */
+.fat:before {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: 0.25em var(--color-1);
+  left: 0;
+  z-index: -1;
+}
+
+/*** ui elements ***/
+
+input {
+  font-size: 1em;
+  color: var(--color-1);
+  background-color: var(--color-bg-2);
+  border-radius: var(--radius);
+  border: 2px solid var(--color-1-shadow);
+  padding: 0.25em 0.5em;
+}
+
+select {
+  font-size: 1em;
+  color: var(--color-1);
+  background-color: var(--color-bg-2);
+  border-radius: var(--radius);
+  border: 2px solid var(--color-1-shadow);
+  padding: 0.25em 0.5em;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='%23bbbbbb' /%3E%3C/svg%3E");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.25em) center;
+  padding-right: 1.75em;
+}
+
+button, dope-split-button > label {
+  margin: 0px;
+  border: none;
+  color: var(--color-1);
+  background-color: var(--color-2);
+  /*border: 1px solid var(--color-2-highlight);*/
+  border-bottom: 4px solid var(--color-2-shadow);
+  border-radius: var(--radius);
+  font-size: 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+  font-weight: bold;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+button:active {
+  margin-block-start: 4px;
+  height: calc(2em - 4px);
+  border: 0px solid var(--color-2);
+}
+
+button[data-notification-text]::before {
+  content: "";
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+}
+
+button[data-notification-text].notify::before {
+  content: attr(data-notification-text);
+  position: absolute;
+  bottom: 105%;
+  padding: 0.25em 0.5em;
+  left: -0.5em;
+  width: 100%;
+  text-align: center;
+  color: var(--color-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  border-radius: var(--radius);
+  text-shadow: 0 0 2px var(--color-bg);
+  background-color: var(--color-semitransparent);
+  border: 1px solid var(--color-1);
+  transition: visibility 0s 2s, opacity 1s 1s linear, display 0s 0s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+button.multistate {
+  width: 100%;
+  min-width: 32px;
+  height: 48px;
+  padding: 0px;
+  border: 0px;
+  background-color: var(--color-4);
+}
+
+button.multistate.highlight {
+  background-color: var(--color-1);
+}
+
+button.multistate:active {
+  border: 0px;
+  margin: unset;
+}
+
+button.multistate.on {
+  background-color: var(--color-2);
+}
+
+button.multistate.highlight.on {
+  background-color: var(--color-2-highlight);
+}
+
+button.multistate.on.half {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-2),
+    var(--color-2) 4px,
+    var(--color-4) 4px,
+    var(--color-4) 6px
+  );
+}
+
+button.multistate.highlight.half {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-2-highlight),
+    var(--color-2-highlight) 4px,
+    var(--color-4) 4px,
+    var(--color-4) 6px
+  );
+}
+
+button.square {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.square:active {
+  height: calc(2em - 4px);
+}
+
+button.round {
+  width: 2em;
+  height: 2em;
+  border-radius: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.round:active {
+  height: calc(2em - 4px);
+}
+
+button.large {
+  width: 3em;
+  height: 3em;
+}
+
+button.large:active {
+  height: calc(3em - 4px);
+}
+
+dope-icon {
+  display: inline-flex;
+}
+
+dope-icon svg {
+  width: 1em;
+  height: 1em;
+  /*fill: var(--color-1);*/
+  stroke: var(--color-1);
+  stroke-width: 0.1em !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+dope-icon.close {
+  display: pointer;
+}
+
+dope-icon.close > svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+button dope-icon svg {
+}
+
+button.square dope-icon svg, button.round dope-icon svg {
+  display: flex;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+dope-icon .large svg {
+  width: 2em;
+  height: 2em;
+}
+
+.alt dope-tag {
+  background-color: var(--color-bg);
+}
+
+dope-tag {
+  width: 2em;
+  height: 1.5em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-2);
+  border-radius: var(--radius);
+}
+
+dope-tag.highlight {
+  border: 2px solid var(--color-1);
+}
+
+dope-tag.on {
+  background-color: var(--color-2);
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+  color: var(--color-1);
+  background: rgba(0,0,0,0.25);
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid var(--color-1-shadow);
+  vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+  appearance: revert;
+  accent-color: var(--color-1);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 48px;
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid var(--color-1);
+  margin: 0px;
+  border-radius: var(--radius-2);
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px;
+  height: 48px;
+  background: var(--color-1);
+  border: 0px;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 46px;
+  height: 46px;
+  background: var(--color-1);
+  border: 0px;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+dope-slider {
+  width: 100%;
+  position: relative;
+}
+
+dope-slider label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 0.5em;
+  pointer-events: none;
+  font-weight: bold;
+}
+
+dope-slider label.right {
+  flex-direction: row-reverse;
+}
+
+dope-tempo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+}
+
+dope-tempo input {
+  width: 6.5ch;
+  padding: 0.25em;
+  font-weight: bold;
+}
+
+
+dope-split-button {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1px;
+  position: relative;
+}
+
+/* see style above from button */
+
+dope-split-button > label {
+  padding: 0.25em 0.5em;
+}
+
+dope-split-button > input[type="checkbox"] {
+  display: none;
+}
+
+dope-split-button ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  bottom: 2em;
+  right: 0px;
+  padding: 1em 0.5em;
+  background-color: var(--color-2);
+  border-radius: var(--radius);
+  box-shadow: var(--pop-shadow);
+  border: 1px solid var(--color-1-shadow);
+  z-index: 100;
+  display: none;
+  width: 15em;
+  max-width: 80vw;
+}
+
+dope-split-button input[type="checkbox"]:checked ~ ul {
+  display: inline-block;
+}
+
+dope-split-button ul li {
+}
+
+dope-split-button ul li span {
+  font-size: 0.75em;
+}
+
+dope-split-button ul li + li {
+  margin-top: 1em;
+}
+
+dope-split-button ul li label > * + * {
+  margin-left: 0.25em;
+}
+
+/* nexus stuff */
+
+.nxui {
+}
+
+.nxui svg {
+  border-radius: var(--radius);
+  background-color: transparent !important;
+  display: inline;
+}
+
+.nxui.envelope svg {
+  background-color: var(--color-1-trans) !important;
+}
+
+.nxui.dial {
+  width: 72px;
+  height: 72px;
+}
+
+.nxui.dial svg {
+  width: 72px;
+  height: 72px;
+}
+
+/* waveform stuff */
+
+.wave dope-row {
+  margin-top: -32px;
+  z-index: 3;
+  position: relative;
+  opacity: 0.5;
+}
+
+.wave dope-row.top {
+  margin-top: 0px;
+  margin-bottom: -32px;
+}
+
+.wave dope-row:hover {
+  opacity: 1;
+}
+
+.wave:hover dope-row {
+  opacity: 1;
+}
+
+/* drum grid */
+
+dope-row.grid table {
+  margin: auto;
+  width: 100%;
+}
+
+dope-row.grid table th {
+  width: 0px;
+  text-align: right;
+  font-weight: normal;
+  font-size: 0.75em;
+  padding-right: 0.25em;
+}
+
+dope-row.grid table td {
+  width: 48px;
+  background-color: transparent;
+}
+
+dope-row.grid table td:nth-child(4n+1) {
+  width: 52px;
+  padding-right: 4px;
+}
+
+dope-row.grid table th {
+  text-wrap: nowrap;
+  cursor: pointer;
+}
+
+dope-row.grid table .sticky {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  position: sticky;
+  left: 0px;
+  z-index: 2;
+  background-color: var(--color-bg-2);
+  border-radius: var(--radius);
+}
+
+dope-row.grid + dope-row.bars button.highlight {
+  border: 2px solid var(--color-1);
+}
+
+dope-row.grid.compact table td:nth-child(8n+2).current-bar {
+  background-color: var(--color-1);
+  border-radius: 2px;
+}
+
+/*** device specific ***/
+
+@media only screen and (max-width: 600px), screen and (max-height: 700px) {
+  #app {
+    font-size: 0.66em;
+    padding: 0.25em;
+  }
+
+  section.ui {
+    margin: 0px 0px;
+    margin-bottom: 4em;
+  }
+
+  header h2 {
+    display: none;
+  }
+
+  dope-row {
+    flex-wrap: wrap;
+  }
+
+  dope-row.center-bias {
+    justify-content: space-around;
+  }
+
+  .wave dope-row {
+    opacity: 1;
+  }
+
+  dope-dialog > div {
+    padding: 0.5em;
+  }
+
+  dope-dialog dope-icon.close {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: -2em;
+  }
+}
+
+/*** loading spinner ***/
+
+#loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+#loading div {
+  animation: spin 0.33s linear infinite;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  border: 3px solid transparent;
+  border-left: 3px solid var(--color-1);
+  border-right: 3px solid var(--color-1);
+}
+
+.spin {
+  animation: spin 0.33s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
