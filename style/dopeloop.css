@@ -572,10 +572,6 @@ dope-icon .large svg {
   height: 2em;
 }
 
-.alt dope-tag {
-  background-color: var(--color-bg);
-}
-
 dope-tag {
   width: 2em;
   height: 1.5em;
@@ -584,6 +580,11 @@ dope-tag {
   align-items: center;
   background-color: var(--color-bg-2);
   border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.alt dope-tag {
+  background-color: var(--color-bg);
 }
 
 dope-tag.highlight {
