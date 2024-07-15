@@ -7,8 +7,9 @@
                             component-slider component-envelope
                             component-dial component-waveform
                             component-footer
-                            set-nx-colors! ev-val button-notify icon
-                            handle-root-click!]]))
+                            set-nx-colors! ev-val button-notify
+                            handle-root-click!]]
+    [dopestyle.util :refer [icon]]))
 
 (defonce state
   (r/atom
