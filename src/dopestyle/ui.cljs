@@ -77,9 +77,18 @@
        [icon (rc/inline "icons/tabler/headphones-filled.svg")]]
       [:button.round
        [icon (rc/inline "icons/tabler/check.svg")]]]
+      [:dope-tag 1]
      [:dope-group
       [:button.round.large
-       [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]]])
+       [icon (rc/inline "icons/tabler/player-play-filled.svg")]]]]]
+   [:dope-card
+    [:dope-row
+     [:dope-group
+      [:span "Selecta"]
+      [:dope-tag 1]
+      [:dope-tag.highlight 2]
+      [:dope-tag 3]
+      [:dope-tag.on 4]]]]])
 
 (defn component-inputs-demo []
   [:<>
