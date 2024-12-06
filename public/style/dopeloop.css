@@ -230,6 +230,7 @@ dope-dialog dope-icon.close {
   float: right;
   margin-top: -1em;
   margin-right: -1em;
+  cursor: pointer;
 }
 
 dope-dialog > div {
