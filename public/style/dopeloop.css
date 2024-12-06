@@ -802,7 +802,7 @@ dope-row.grid table td {
 
 dope-row.grid table td:nth-child(4n+1) {
   width: 52px;
-  padding-right: 4px;
+  padding-right: 2px;
 }
 
 dope-row.grid table th {
@@ -820,13 +820,20 @@ dope-row.grid table .sticky {
   border-radius: var(--radius);
 }
 
-dope-row.grid + dope-row.bars button.highlight {
+dope-row.grid + dope-row.pages button.highlight {
   border: 2px solid var(--color-1);
 }
 
 dope-row.grid.compact table td:nth-child(8n+2).current-bar {
   background-color: var(--color-1);
   border-radius: 2px;
+}
+
+/* dope-row.grid.compact {
+  
+} */
+
+dope-row.grid .current-bar {
 }
 
 /*** device specific ***/
@@ -866,6 +873,12 @@ dope-row.grid.compact table td:nth-child(8n+2).current-bar {
     margin-top: 0px;
     margin-right: 0px;
     margin-left: -2em;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  dope-card.compact {
+    padding: 0.25em 0.125em;
   }
 }
 
