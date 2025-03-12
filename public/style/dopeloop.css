@@ -839,7 +839,7 @@ dope-row.grid .current-bar {
 /*** device specific ***/
 
 @media only screen and (max-width: 600px), screen and (max-height: 700px) {
-  #app {
+  #app, #page {
     font-size: 0.66em;
     padding: 0.25em;
   }
