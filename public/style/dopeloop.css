@@ -215,7 +215,11 @@ dope-modal .close-modal dope-icon {
 }
 
 dope-modal main {
-  margin: 2em;
+  padding: 1em;
+}
+
+dope-modal section {
+  max-width: 100%;
 }
 
 dope-dialog {
@@ -879,6 +883,10 @@ dope-row.grid .current-bar {
     margin-top: 0px;
     margin-right: 0px;
     margin-left: -2em;
+  }
+
+  dope-modal main {
+    padding: 0.5em;
   }
 }
 
