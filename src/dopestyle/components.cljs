@@ -21,39 +21,47 @@
 
 ; *** components *** ;
 
-(defn component-tempo [state lookup]
+(defn component-tempo-inner [state lookup]
   (let [min-tempo (first tempo-range)
         max-tempo (second tempo-range)
         tmp-tempo (r/atom (or (get-in @state lookup) 120))
         update-fn #(let [v (-> @tmp-tempo clamp-tempo)]
                      (reset! tmp-tempo (set-tempo state lookup v)))
         update-up-fn
-        #(reset! tmp-tempo (set-tempo state lookup (clamp-tempo (+ @tmp-tempo 10))))
+        #(reset! tmp-tempo
+                 (set-tempo state lookup (clamp-tempo (+ @tmp-tempo 10))))
         update-dn-fn
-        #(reset! tmp-tempo (set-tempo state lookup (clamp-tempo (- @tmp-tempo 10))))]
+        #(reset! tmp-tempo
+                 (set-tempo state lookup (clamp-tempo (- @tmp-tempo 10))))]
     (fn []
-      [:dope-tempo {:data-tempo (get-in @state lookup)}
-        [:button.round
-         {:on-click update-dn-fn
-          :class (when (< @tmp-tempo (+ min-tempo 10)) "disabled")
-          :title "Reduce BPM by 10"}
-         [icon (rc/inline "icons/tabler/minus.svg")]]
-        [:input {:value @tmp-tempo
-                 :on-change #(reset! tmp-tempo (-> % .-target .-value))
-                 :on-key-down #(when (= (aget % "key") "Enter")
-                                 (-> % .-target .blur))
-                 :type "number"
-                 :name "tempo"
-                 :alt "BPM"
-                 :on-blur update-fn
-                 :on-mouse-up update-fn
-                 :title "Tempo (BPM)"}]
-        [:label {:for "tempo" :style {:display "none"}} "Tempo (BPM)"]
-        [:button.round
-         {:on-click update-up-fn
-          :class (when (> @tmp-tempo (- max-tempo 10)) "disabled")
-          :title "Increase BPM by 10"}
-         [icon (rc/inline "icons/tabler/plus.svg")]]])))
+      [:<>
+       [:button.round
+        {:on-click update-dn-fn
+         :class (when (< @tmp-tempo (+ min-tempo 10)) "disabled")
+         :title "Reduce BPM by 10"}
+        [icon (rc/inline "icons/tabler/minus.svg")]]
+       [:input {:value @tmp-tempo
+                :on-change #(reset! tmp-tempo (-> % .-target .-value))
+                :on-key-down #(when (= (aget % "key") "Enter")
+                                (-> % .-target .blur))
+                :type "number"
+                :name "tempo"
+                :alt "BPM"
+                :on-blur update-fn
+                :on-mouse-up update-fn
+                :title "Tempo (BPM)"}]
+       [:label {:for "tempo" :style {:display "none"}} "Tempo (BPM)"]
+       [:button.round
+        {:on-click update-up-fn
+         :class (when (> @tmp-tempo (- max-tempo 10)) "disabled")
+         :title "Increase BPM by 10"}
+        [icon (rc/inline "icons/tabler/plus.svg")]]])))
+
+(defn component-tempo [state lookup]
+  [:dope-tempo {:key (get-in @state lookup)
+                :data-bpm (get-in @state lookup)
+                :data-test "hello 6"}
+   [component-tempo-inner state lookup]])
 
 (defn component-envelope []
   [:span.envelope.nxui
