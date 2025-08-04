@@ -4,6 +4,7 @@
 
 :root {
   --color-bg: #444349;
+  --color-bg-shadow: #333237;
   --color-bg-2: rgba(0, 0, 0, 0.25);
   --color-semitransparent: rgba(68, 67, 73, 0.9);
   --color-1: #F7F1ED;
@@ -706,15 +707,16 @@ dope-split-button > input[type="checkbox"] {
   display: none;
 }
 
+
+
 dope-split-button ul {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
   position: absolute;
-  bottom: 2em;
-  right: 0px;
+  bottom: 2.2em;
   padding: 1em 0.5em;
-  background-color: var(--color-2);
+  background-color: var(--color-bg-shadow);
   border-radius: var(--radius);
   box-shadow: var(--pop-shadow);
   border: 1px solid var(--color-1-shadow);
@@ -724,7 +726,11 @@ dope-split-button ul {
   max-width: 80vw;
 }
 
-dope-split-button input[type="checkbox"]:checked ~ ul {
+dope-split-button.right ul {
+  right: 0px;
+}
+
+dope-split-button input[type="checkbox"]:checked ~ * {
   display: inline-block;
 }
 
