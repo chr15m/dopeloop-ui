@@ -362,6 +362,10 @@ summary {
   cursor: pointer;
 }
 
+.warning {
+  color: var(--color-2);
+}
+
 .fat {
   color: var(--color-bg);
   position: relative;
@@ -426,6 +430,11 @@ button, dope-split-button > label {
 
 button:disabled {
   opacity: 0.5;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 button:active {
