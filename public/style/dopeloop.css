@@ -362,6 +362,18 @@ summary {
   cursor: pointer;
 }
 
+dope-split-button > label,
+dope-tag,
+dope-menu label,
+summary,
+dope-row.grid table th,
+dope-slider label,
+dope-icon {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .warning {
   color: var(--color-2);
 }
