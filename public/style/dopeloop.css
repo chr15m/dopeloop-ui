@@ -366,6 +366,13 @@ summary {
   color: var(--color-2);
 }
 
+.notification {
+  padding: 0.5em;
+  border: 2px solid var(--color-2);
+  border-radius: var(--radius);
+  background-color: rgba(200, 55, 55, 0.25);
+}
+
 .fat {
   color: var(--color-bg);
   position: relative;
