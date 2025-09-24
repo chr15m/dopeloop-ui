@@ -17,6 +17,7 @@
   --color-3: #e7ad1b;
   --color-3-shadow: #947B39;
   --color-4: #888;
+  --multistate-off-color: var(--color-4);
   --radius: 4px;
   --radius-2: 6px;
   --pop-shadow: 0px 0px 5px -2px var(--color-1);
@@ -497,7 +498,7 @@ button.multistate {
   height: 48px;
   padding: 0px;
   border: 0px;
-  background-color: var(--color-4);
+  background-color: var(--multistate-off-color);
 }
 
 button.multistate.highlight {
@@ -522,8 +523,8 @@ button.multistate.on.half {
     -45deg,
     var(--color-2),
     var(--color-2) 4px,
-    var(--color-4) 4px,
-    var(--color-4) 6px
+    var(--multistate-off-color) 4px,
+    var(--multistate-off-color) 6px
   );
 }
 
@@ -532,8 +533,8 @@ button.multistate.highlight.half {
     -45deg,
     var(--color-2-highlight),
     var(--color-2-highlight) 4px,
-    var(--color-4) 4px,
-    var(--color-4) 6px
+    var(--multistate-off-color) 4px,
+    var(--multistate-off-color) 6px
   );
 }
 
@@ -848,6 +849,10 @@ dope-row.grid table td {
 dope-row.grid table td:nth-child(4n+1) {
   width: 52px;
   padding-right: 2px;
+}
+
+dope-row.grid table td:nth-child(4n+2) {
+  --multistate-off-color: #aaa;
 }
 
 dope-row.grid table th {
